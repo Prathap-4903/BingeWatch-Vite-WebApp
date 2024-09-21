@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prathap-4903/BingeWatch-Vite-WebApp.git"
+  },
+  "author": "Draken",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prathap-4903/BingeWatch-Vite-WebApp/issues"
+  },
+  "homepage": "https://github.com/Prathap-4903/BingeWatch-Vite-WebApp#readme"
+}
