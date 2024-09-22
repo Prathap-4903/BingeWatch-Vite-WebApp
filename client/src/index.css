@@ -2,10 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Geist-Regular";
+  src: url(./assets/fonts/Geist-Font/Geist-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: "Geist-Medium";
+  src: url(./assets/fonts/Geist-Font/Geist-Medium.ttf) format('truetype');
+}
+@font-face {
+  font-family: "Geist-SemiBold";
+  src: url(./assets/fonts/Geist-Font/Geist-SemiBold.ttf) format('truetype');
+}
+@font-face {
+  font-family: "Geist-Bold";
+  src: url(./assets/fonts/Geist-Font/Geist-Bold.ttf) format('truetype');
+}
+
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /*font-family: "Geist Sans";*/
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: Bold;
 
   /*color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);

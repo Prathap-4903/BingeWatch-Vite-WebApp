@@ -1,10 +1,13 @@
 import './App.css'
+import Sign_In from './screens/Signin_Signup/Sign_In'
+import Sign_up from './screens/Signin_Signup/Sign_up'
 
 function App() {
 
   return (
     <>
-      <h1 className="text-cyan-600">Hello World!</h1>
+      <Sign_In />
+      <Sign_up />
     </>
   )
 }
