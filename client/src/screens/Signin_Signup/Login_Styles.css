@@ -3,5 +3,17 @@
 @tailwind utilities;
 
 input[type="text"]:focus ~ .input-text{
-    @apply text-black bg-white rounded-3xl transform -translate-y-9 -translate-x-4;
+    @apply text-black bg-white rounded-full transform -translate-y-9 -translate-x-3;
 }
+
+input[type="text"]:not(:focus):valid ~ .input-text {
+    @apply bg-white rounded-full transform -translate-y-9 -translate-x-3;
+  }
+
+  input[type="text"]:focus ~ .input-password{
+    @apply text-black bg-white rounded-full transform -translate-y-9 -translate-x-3;
+}
+
+input[type="text"]:not(:focus):valid ~ .input-password {
+    @apply bg-white rounded-full transform -translate-y-9 -translate-x-3;
+  }
