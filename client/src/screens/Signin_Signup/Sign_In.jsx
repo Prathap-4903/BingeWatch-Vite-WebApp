@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./Login_Styles.css";
+//import { Eye } from '@geist-ui/icons'
+import Eye from '@geist-ui/icons/eye';
+import Eyeoff from '@geist-ui/icons/eyeoff';
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../assets/icons/logo-google.svg"
@@ -35,7 +38,7 @@ const Sign_In = () => {
         />
         <img src={LogoText} width="180" height="34.32" className="mt-3" />
       </div>
-      
+
       <div className="login-screen flex justify-center items-center h-screen">
         <div className="login-container bg-transparent pt-4 px-4 pb-4 border-black rounded-3xl border-[2.5px] space-y-2 mx-10 min-w-[340px] w-[500px]">
           <h1 className="font-geist-bold text-2xl">Login</h1>
@@ -55,6 +58,12 @@ const Sign_In = () => {
                   <div class="relative w-full">
                     <input type="text" id="floating_outlined_p" className="block w-full font-geist-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" />
                     <label htmlFor="floating_outlined_p" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <div className="place-items-end">
+                        <Eyeoff />
+                      </div>
+                        
+                      </div>
                   </div>
                 </div>
               </div>
