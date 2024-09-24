@@ -80,3 +80,33 @@ summa -
         </div>
         <button className='font-geist-bold bg-white border-2 border-black p-1 rounded-lg'>Login</button>
         </div>
+
+Perfect Login - 
+<div className='login-screen flex justify-center items-center h-screen'>
+      <div className='login-container bg-transparent pt-4 px-4 pb-4 border-black rounded-3xl border-[2.5px] space-y-2'>
+        <h1 className='font-geist-bold text-2xl'>Login</h1>
+        <p className='font-geist-medium font-[375] '>Grab Your Popcorn and Join The Party!</p>
+        <div className='input-container justify-center items-center'>
+          <div className='flex flex-col space-y-3'>
+            <div className='w-full space-y-1'>
+              <label htmlFor="floating_outlined_e" className='font-geist-semi'>Enter Email : </label>
+              <div class="relative w-full">
+                <input type="text" id="floating_outlined_e" class="block font-geist-medium font-light px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" />
+                <label for="floating_outlined_e" class="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Email</label>
+              </div>
+            </div>
+            <div className='w-full space-y-1'>
+              <label htmlFor="floating_outlined_p" className='font-geist-semi'>Enter Password : </label>
+              <div class="relative w-full">
+                <input type="text" id="floating_outlined_p" class="block font-geist-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" />
+                <label for="floating_outlined_p" class="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
+              </div>
+            </div>
+          {/*<p className='font-geist-medium font-thin underline text-[14px]'>Don't have an account? Click Here to Sign Up!</p>*/}
+          <button className='font-geist-medium font-thin underline text-[14px] bg-transparent'>Don't have an account? Click Here to Sign Up!</button>
+          <button className='font-geist-bold text-white bg-black border-2 border-black py-1 rounded-xl'>Sign In</button>
+          <button className='font-geist-semi border-2 border-black py-1 rounded-xl bg-transparent'>Sign In with Google</button>
+        </div>
+        </div>
+      </div>
+    </div>
