@@ -9,22 +9,6 @@ import LogoText from "../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../assets/icons/logo-google.svg"
 
 const Sign_In = () => {
-  const [password, setPassword] = useState(""); // Holds actual password
-  const [maskedPassword, setMaskedPassword] = useState(""); // Holds asterisks
-
-  const handlePasswordChange = (e) => {
-    const inputValue = e.target.value;
-
-    // Update the actual password by keeping track of each character typed
-    setPassword(
-      (prevPassword) =>
-        inputValue.length > prevPassword.length
-          ? prevPassword + inputValue.slice(-1) // Add the new character
-          : prevPassword.slice(0, inputValue.length) // Remove last character
-    );
-
-    setMaskedPassword("*".repeat(inputValue.length));
-  };
 
   return (
     <>
