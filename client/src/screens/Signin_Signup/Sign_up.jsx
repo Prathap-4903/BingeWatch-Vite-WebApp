@@ -44,7 +44,7 @@ const Sign_up = () => {
               <div className="w-full space-y-1">
                 <label htmlFor="floating_outlined_p" className="font-geist-semi">Enter Password : </label>
                 <div className="relative w-full">
-                  <input required type="password" id="floating_outlined_p" className="block w-full font-geist-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" />
+                  <input required type="password" id="floating_outlined_p" className="block w-full font-geist-medium font-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" />
                   <label htmlFor="floating_outlined_p" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
                   <div className="absolute inset-y-0 right-5 flex items-center pl-3 pointer-events-none">
                     <div className="flex items-end justify-end justify-items-end">
@@ -56,7 +56,7 @@ const Sign_up = () => {
               <div className="w-full space-y-1">
                 <label htmlFor="floating_outlined_cp" className="font-geist-semi">Confirm Password : </label>
                 <div className="relative w-full">
-                  <input required type="password" id="floating_outlined_cp" className="block w-full font-geist-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" />
+                  <input required type="password" id="floating_outlined_cp" className="block w-full font-geist-medium font-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" />
                   <label htmlFor="floating_outlined_cp" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Confirm Password</label>
                   <div className="absolute inset-y-0 right-5 flex items-center pl-3 pointer-events-none">
                     <div className="flex items-end justify-end justify-items-end">
@@ -65,6 +65,21 @@ const Sign_up = () => {
                   </div>
                 </div>
               </div>
+
+              <div class="flex flex-wrap space-y-1 w-full">
+              <label htmlFor="floating_outlined_cp" className="font-geist-semi left-1 justify-start items-start">Upload Profile Picture : </label>
+                  <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-24 border-2 border-black border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                          <svg class="w-8 h-8 text-black dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                          </svg>
+                          <p class="mb-2 text-sm text-black dark:text-black font-geist-semi font-bold"><span class="font-geist-medium font-semibold">Click To Upload</span> or Drag And Drop</p>
+                          <p class="text-xs text-black dark:text-black font-geist-medium font-thin">JPG/PNG (MAX. 800x400px)</p>
+                      </div>
+                      <input id="dropzone-file" type="file" class="hidden" />
+                  </label>
+              </div> 
+
             </div>
           </div>
           </div>
