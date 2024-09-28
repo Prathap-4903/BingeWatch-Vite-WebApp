@@ -8,7 +8,7 @@ import GoogleLogo from "../../assets/icons/logo-google.svg"
 const Sign_up = () => {
   return (
     <>
-      <div className="logo-container flex">
+      <div className="logo-container flex cursor-pointer">
         <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mt-2 ml-2" />
         <img src={LogoText} width="180" height="34.32" className="mt-3" />
       </div>

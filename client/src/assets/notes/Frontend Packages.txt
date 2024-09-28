@@ -1,0 +1,14 @@
+Packages -
+react-router-dom
+
+Main.jsx -
+import { BrowserRouter } from 'react-router-dom';
+<BrowserRouter>
+    <App />
+</BrowserRouter>
+
+App.jsx -
+import { Routes, Route } from 'react-router-dom';
+<Routes>
+    <Route path="/sign-in" element={<Sign_In />} />
+</Routes>
