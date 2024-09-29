@@ -12,3 +12,10 @@ import { Routes, Route } from 'react-router-dom';
 <Routes>
     <Route path="/sign-in" element={<Sign_In />} />
 </Routes>
+
+Sign-In.jsx
+import { useNavigate } from 'react-router-dom';
+const nav = useNavigate()
+function gotosignup() {
+    nav('/sign-up')
+}

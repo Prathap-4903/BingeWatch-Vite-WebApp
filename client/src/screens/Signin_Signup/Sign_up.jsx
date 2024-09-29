@@ -5,8 +5,16 @@ import LockLogo from "../../assets/icons/lock_png.png";
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../assets/icons/logo-google.svg"
+import { useNavigate } from "react-router-dom";
 
 const Sign_up = () => {
+
+  const navigate = useNavigate()
+
+  function gotologin() {
+    navigate("/sign-in")
+  }
+
   return (
     <>
       <div className="logo-container flex cursor-pointer">
@@ -79,7 +87,7 @@ const Sign_up = () => {
           </div>
           </div>
           <div className="button-container flex flex-col flex-wrap space-y-3 justify-center w-full">
-            <button className="font-geist-medium font-thin underline text-[13px] bg-transparent hover:scale-[1.025] ease-in-out">Already have an account? Click Here to Sign In!</button>
+            <button onClick={gotologin} className="font-geist-medium font-thin underline text-[13px] bg-transparent hover:scale-[1.025] ease-in-out">Already have an account? Click Here to Sign In!</button>
             <button className="font-geist-bold text-white bg-black border-2 border-black py-1 rounded-xl hover:bg-white hover:text-black hover:scale-100 hover:border-r-4 hover:border-b-4">Sign Up</button>
             <button className="flex justify-center gap-2 font-geist-semi border-2 font-medium border-black py-1 rounded-xl bg-transparent hover:border-r-4 hover:border-b-4">
               <img src={GoogleLogo} alt="" className="h-5 w-5 mt-[1.7px]" />
