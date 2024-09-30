@@ -88,8 +88,8 @@ const Sign_up = () => {
           </div>
           <div className="button-container flex flex-col flex-wrap space-y-3 justify-center w-full">
             <button onClick={gotologin} className="font-geist-medium font-thin underline text-[13px] bg-transparent hover:scale-[1.025] ease-in-out">Already have an account? Click Here to Sign In!</button>
-            <button className="font-geist-bold text-white bg-black border-2 border-black py-1 rounded-xl hover:bg-white hover:text-black hover:scale-100 hover:border-r-4 hover:border-b-4">Sign Up</button>
-            <button className="flex justify-center gap-2 font-geist-semi border-2 font-medium border-black py-1 rounded-xl bg-transparent hover:border-r-4 hover:border-b-4">
+            <button className="font-geist-bold text-white bg-black border-2 border-black py-1 rounded-xl hover:bg-white hover:text-black hover:scale-100 hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">Sign Up</button>
+            <button className="flex justify-center gap-2 font-geist-semi border-2 font-medium border-black py-1 rounded-xl bg-transparent hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">
               <img src={GoogleLogo} alt="" className="h-5 w-5 mt-[1.7px]" />
                 <span>Sign Up With Google</span>
             </button>
