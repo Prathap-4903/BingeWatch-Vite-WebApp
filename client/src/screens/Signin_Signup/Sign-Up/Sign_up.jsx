@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Signup_Styles.css";
-//import Input from "../../components/UI_Elements/Input_Field";
 import LockLogo from "../../assets/icons/lock_png.png";
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";
@@ -20,7 +19,6 @@ const Sign_up = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // axios.defaults.withCredentials = true;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{

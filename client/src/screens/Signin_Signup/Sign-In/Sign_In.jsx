@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./Login_Styles.css";
-//import Input from "../../components/UI_Elements/Input_Field";
 import LockLogo from "../../assets/icons/lock_png.png";
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../assets/icons/logo-google.svg"
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from '../../../axios'
 
 const Sign_In = () => {
 
@@ -19,7 +18,6 @@ const Sign_In = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // axios.defaults.withCredentials = true;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
@@ -36,7 +34,6 @@ const Sign_In = () => {
 
   return (
     <>
-      {/*<h1 className='font-geist-medium text-[250px] tracking-tighter'>Geist.</h1>*/}
       <div className="logo-container flex cursor-pointer">
         <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mt-2 ml-2" />
         <img src={LogoText} width="180" height="34.32" className="mt-3" />
