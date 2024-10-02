@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import "./Login_Styles.css";
-import Input from "../../components/UI_Elements/Input_Field";
-//import { Eye } from '@geist-ui/icons'
-//mport Eye from '@geist-ui/icons/eye';
-//import Eyeoff from '@geist-ui/icons/eyeoff';
+//import Input from "../../components/UI_Elements/Input_Field";
 import LockLogo from "../../assets/icons/lock_png.png";
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../assets/icons/logo-google.svg"
 import { useNavigate } from "react-router-dom";
-const Sign_In = () => {
+import axios from 'axios';
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Sign_In = () => {
 
   const navigate = useNavigate();
 
@@ -20,9 +16,23 @@ const Sign_In = () => {
     navigate('/sign-up')
   }
 
-  function gotohome() {
-    navigate('/home')
-  }
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  // axios.defaults.withCredentials = true;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+        const response = await axios.post('http://localhost:5000/sign-in', { email, password })
+        .then(response => {
+            if(response.data.status){
+                navigate("/home");
+            }
+        });
+    } catch(err){
+        console.log(err);
+    }
+  };
 
   return (
     <>
@@ -32,7 +42,7 @@ const Sign_In = () => {
         <img src={LogoText} width="180" height="34.32" className="mt-3" />
       </div>
 
-      <form action="">
+      <form action="" onSubmit={handleSubmit} method="post">
         <div className="login-screen flex justify-center items-center h-screen">
         <div className="login-container bg-transparent border-r-[5px] border-b-[5px] pt-4 px-4 pb-4 border-black rounded-3xl border-[2.5px] space-y-2 mx-10 min-w-[340px] w-[500px]">
           <h1 className="font-geist-bold text-2xl">Login</h1>
@@ -63,7 +73,7 @@ const Sign_In = () => {
               </div>
               <div className="button-container flex flex-col flex-wrap space-y-3 justify-center w-full">
                 <button onClick={gotosignup} className="font-geist-medium font-thin underline text-[14px] bg-transparent hover:scale-[1.025] ease-in-out">Don't have an account? Click Here to Sign Up!</button>
-                <button onClick={gotohome} className="font-geist-bold text-white bg-black border-2 border-black py-1 rounded-xl hover:bg-white hover:text-black hover:scale-100 hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">Sign In</button>
+                <button type='submit' className="font-geist-bold text-white bg-black border-2 border-black py-1 rounded-xl hover:bg-white hover:text-black hover:scale-100 hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">Sign In</button>
                 <button className="flex justify-center gap-2 font-geist-semi border-2 font-medium border-black py-1 rounded-xl bg-transparent hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">
                   <img src={GoogleLogo} alt="" className="h-5 w-5 mt-[1.7px] cursor-pointer" />
                   <span>Sign In With Google</span>
