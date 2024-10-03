@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./Login_Styles.css";
-import LockLogo from "../../assets/icons/lock_png.png";
-import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
-import LogoText from "../../assets/icons/BingeWatch Text Black.png";
-import GoogleLogo from "../../assets/icons/logo-google.svg"
+import LockLogo from "../../../assets/icons/lock_png.png";
+import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
+import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
+import GoogleLogo from "../../../assets/icons/logo-google.svg"
 import { useNavigate } from "react-router-dom";
-import axios from '../../../axios'
+import axios from 'axios'
+// import axios from '../../../axios';
 
 const Sign_In = () => {
 
@@ -20,15 +21,15 @@ const Sign_In = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // axios.baseUrl("http://localhost:5173")
+    // axios.withCredentials = true
     try{
-        const response = await axios.post('http://localhost:5000/sign-in', { email, password })
-        .then(response => {
-            if(response.data.status){
-                navigate("/home");
-            }
-        });
+      const response = await axios.post("http://localhost:5000/auth/sign-in", {email, password})
+      .then((response) => {
+        navigate("/home");
+      })
     } catch(err){
-        console.log(err);
+      console.error(err);
     }
   };
 
@@ -57,7 +58,7 @@ const Sign_In = () => {
                 <div className="w-full space-y-1">
                   <label htmlFor="password" className="font-geist-semi">Enter Password : </label>
                   <div className="relative w-full">
-                    <input type="password" id="password" className="block w-full font-geist-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" />
+                    <input type="password" id="password" className="block w-full font-geist-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" required onChange={(e) => setPassword(e.target.value)} />
                     <label htmlFor="password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
                     <div className="absolute inset-y-0 right-5 flex items-center pl-3 pointer-events-none">
                       <div className="flex items-end justify-end justify-items-end">

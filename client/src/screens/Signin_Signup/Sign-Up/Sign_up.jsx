@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./Signup_Styles.css";
-import LockLogo from "../../assets/icons/lock_png.png";
-import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
-import LogoText from "../../assets/icons/BingeWatch Text Black.png";
-import GoogleLogo from "../../assets/icons/logo-google.svg"
+// import LockLogo from "../../assets/icons/lock_png.png";
+import LockLogo from '../../../assets/icons/lock_png.png';
+import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
+import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
+import GoogleLogo from "../../../assets/icons/logo-google.svg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+// import axios from '../../../axios';
 
 const Sign_up = () => {
 
@@ -16,13 +18,15 @@ const Sign_up = () => {
   }
 
   const [name, setName] = useState('');
+  const[username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-        const response = await axios.post('http://localhost:5000/sign-in', { email, password });
+        const response = await axios.post('http://localhost:5000/auth/sign-up', { name, username, email, password, confirm_password });
         navigate("/sign-in");
     } catch(err){
         console.log(err);
@@ -55,7 +59,7 @@ const Sign_up = () => {
               <div className="w-full space-y-1">
                 <label htmlFor="username" className="font-geist-semi">Enter Username : </label>
                 <div className="relative w-full">
-                  <input required type="text" id="username" className="block w-full font-geist-medium font-light px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2  peer focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black placeholder-transparent" placeholder="" />
+                  <input required type="text" id="username" className="block w-full font-geist-medium font-light px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2  peer focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black placeholder-transparent" placeholder="" onChange={(e) => setUsername(e.target.value)} />
                   <label htmlFor="username" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Username</label>
                 </div>
               </div>
@@ -79,10 +83,10 @@ const Sign_up = () => {
                 </div>
               </div>
               <div className="w-full space-y-1">
-                <label htmlFor="confirmPassword" className="font-geist-semi">Confirm Password : </label>
+                <label htmlFor="confirm_password" className="font-geist-semi">Confirm Password : </label>
                 <div className="relative w-full">
-                  <input required type="password" id="confirmPassword" className="block w-full font-geist-medium font-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" />
-                  <label htmlFor="confirmPassword" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Confirm Password</label>
+                  <input required type="password" id="confirm_password" className="block w-full font-geist-medium font-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" onChange={(e) => setConfirmPassword(e.target.value)} />
+                  <label htmlFor="confirm_password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Confirm Password</label>
                   <div className="absolute inset-y-0 right-5 flex items-center pl-3 pointer-events-none">
                     <div className="flex items-end justify-end justify-items-end">
                       <img src={LockLogo} alt="" className="h-6 w-6" />
