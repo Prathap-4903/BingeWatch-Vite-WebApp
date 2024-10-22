@@ -7,6 +7,7 @@ import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../../assets/icons/logo-google.svg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Input from "../../../components/UI_Elements/Input_Field";
 // import axios from '../../../axios';
 
 const Sign_up = () => {
