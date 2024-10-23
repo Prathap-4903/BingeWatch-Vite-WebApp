@@ -69,6 +69,7 @@ const Sign_up = () => {
                 </div>
               </div> */}
               <Input IdName={"name"} InputLabel={"Enter Name : "} InputName={"Name"} changeEvent={(e) => setName(e.target.value)} />
+              <Input IdName={"email"} InputLabel={"Enter Email : "} InputName={"Email"} changeEvent={(e) => setEmail(e.target.value)} />
               <div className="w-full space-y-1">
                 <label htmlFor="username" className="font-geist-semi">Enter Username : </label>
                 <div className="relative w-full">
