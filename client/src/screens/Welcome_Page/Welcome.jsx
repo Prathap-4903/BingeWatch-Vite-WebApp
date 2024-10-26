@@ -4,7 +4,7 @@ const Welcome = () => {
   return (
     <>
     <div className='Main-Screen w-full h-screen flex justify-center items-center'>
-        <h1>Welcome To BingeWatch - Stream Movies With Friends!</h1>  
+        <h1 className='font-geist-bold text-[24px]'>Welcome To BingeWatch - Stream Movies With Friends!</h1>  
     </div>
         
     </>
