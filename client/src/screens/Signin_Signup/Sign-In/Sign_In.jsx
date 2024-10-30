@@ -17,13 +17,16 @@ const Sign_In = () => {
     navigate("/sign-up");
   }
 
+  const eyecon = <Eye size={32}/>
+  const eyeslash = <EyeSlash size={32}/>
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [eye, setEye] = useState(<Eye size={32}/>);
+  const [eye, setEye] = useState(eyecon);
 
   const handleGlass = () => {
     // glass == GlassOn ? setGlass(GlassOff) : setGlass(GlassOn);
-    eye == <Eye size={32}/> ? setEye(<EyeSlash size={32}/>) : setEye(<Eye size={32}/>);
+    eye == eyecon ? setEye(eyeslash) : setEye(eyecon)
   };
 
   const handleSubmit = async (e) => {
