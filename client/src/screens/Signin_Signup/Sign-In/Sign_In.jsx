@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login_Styles.css";
 import GlassOn from "../../../assets/icons/glass-on.png";
 import GlassOff from "../../../assets/icons/glass-off.png";
+import { Eye, EyeSlash, EyeClosed } from "@phosphor-icons/react";
 import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../../assets/icons/logo-google.svg";
@@ -18,10 +19,11 @@ const Sign_In = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [glass, setGlass] = useState(GlassOn);
+  const [eye, setEye] = useState(<Eye size={32}/>);
 
   const handleGlass = () => {
-    glass == GlassOn ? setGlass(GlassOff) : setGlass(GlassOn);
+    // glass == GlassOn ? setGlass(GlassOff) : setGlass(GlassOn);
+    eye == <Eye size={32}/> ? setEye(<EyeSlash size={32}/>) : setEye(<Eye size={32}/>);
   };
 
   const handleSubmit = async (e) => {
@@ -66,7 +68,8 @@ const Sign_In = () => {
                       <label htmlFor="password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
                       <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer z-50">
                         <div className="flex items-end justify-end justify-items-end cursor-pointer">
-                          <img onClick={handleGlass} src={glass} alt="" className="h-[42px] w-[42px]" />
+                          {/* <Eye size={32}/> */}
+                          <img onClick={handleGlass} src={eye} alt="" className="h-[42px] w-[42px]" />
                         </div>
                       </div>
                     </div>
