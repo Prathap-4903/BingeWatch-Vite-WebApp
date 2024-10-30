@@ -3,6 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import { Auth } from './routes/auth/auth.js';
+dotenv.config()
 
 const app = express();
 app.use(express.json())
@@ -14,10 +15,10 @@ app.use("/auth", Auth)
 
 mongoose.connect("mongodb://localhost:27017/binge_watch")
 .then(() => {
-    console.log("Connected to MongoDB - binge_watch")
+    console.log("Connected to MongoDB - binge_watch");
 })
 .catch((err) => {
-    console.log("Error Connecting MongoDB: ",err)
+    console.log("Error Connecting MongoDB: ", err);
 })
 
 

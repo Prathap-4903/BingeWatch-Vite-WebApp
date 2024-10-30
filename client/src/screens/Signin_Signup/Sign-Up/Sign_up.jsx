@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Signup_Styles.css";
 import Eye from "../../../assets/icons/eye.png";
-import EyeSlash from "../../../assets/icons/eye-slash.png";
 import EyeClosed from "../../../assets/icons/eye-closed.png";
 import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
@@ -30,7 +29,7 @@ const Sign_up = () => {
   }
 
   const [name, setName] = useState('');
-  const[username, setUsername] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirmPassword] = useState('');

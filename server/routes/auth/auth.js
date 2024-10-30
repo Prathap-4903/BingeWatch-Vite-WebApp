@@ -33,7 +33,7 @@ auth.post("/sign-in", async(req,res) => {
         return res.status(401).json({message: "Invalid Password!"})
     }
 
-    const token = jwt.sign({email: user.email},"MyPrivateKey123",{expiresIn: '7d'})
+    const token = jwt.sign({email: user.email},"MyPrivateKey123", {expiresIn: '7d'})
     res.cookie('token', token, {httpOnly: true, maxAge: 86400000})
     return res.status(200).json({message: "Login Successful!"})
 

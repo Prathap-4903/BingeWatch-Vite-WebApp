@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import "./Login_Styles.css";
-// import GlassOn from "../../../assets/icons/glass-on.png";
-// import GlassOff from "../../../assets/icons/glass-off.png";
-// import { Eye, EyeSlash } from "@phosphor-icons/react";
 import Eye from "../../../assets/icons/eye.png";
-import EyeSlash from "../../../assets/icons/eye-slash.png";
 import EyeClosed from "../../../assets/icons/eye-closed.png";
 import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
@@ -25,7 +21,6 @@ const Sign_In = () => {
   const [eye, setEye] = useState(Eye);
 
   const handleEye = () => {
-    // glass == GlassOn ? setGlass(GlassOff) : setGlass(GlassOn);
     eye == Eye ? setEye(EyeClosed) : setEye(Eye);
   };
 
@@ -71,7 +66,6 @@ const Sign_In = () => {
                       <label htmlFor="password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
                       <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer z-50">
                         <div className="flex items-end justify-end justify-items-end cursor-pointer">
-                          {/* <Eye size={32}/> */}
                           <img onClick={handleEye} src={eye} alt="" className="h-[32px] w-[32px]" />
                         </div>
                       </div>
