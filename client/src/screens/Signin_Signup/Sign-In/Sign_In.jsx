@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import "./Login_Styles.css";
 // import GlassOn from "../../../assets/icons/glass-on.png";
 // import GlassOff from "../../../assets/icons/glass-off.png";
-import { Eye, EyeSlash } from "@phosphor-icons/react";
+// import { Eye, EyeSlash } from "@phosphor-icons/react";
+import Eye from "../../../assets/icons/eye.png";
+import EyeSlash from "../../../assets/icons/eye-slash.png";
+import EyeClosed from "../../../assets/icons/eye-closed.png";
 import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../../assets/icons/logo-google.svg";
@@ -17,16 +20,13 @@ const Sign_In = () => {
     navigate("/sign-up");
   }
 
-  const eyecon = <Eye size={32}/>
-  const eyeslash = <EyeSlash size={32}/>
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [eye, setEye] = useState(eyecon);
+  const [eye, setEye] = useState(Eye);
 
-  const handleGlass = () => {
+  const handleEye = () => {
     // glass == GlassOn ? setGlass(GlassOff) : setGlass(GlassOn);
-    eye == eyecon ? setEye(eyeslash) : setEye(eyecon)
+    eye == Eye ? setEye(EyeClosed) : setEye(Eye);
   };
 
   const handleSubmit = async (e) => {
@@ -72,7 +72,7 @@ const Sign_In = () => {
                       <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer z-50">
                         <div className="flex items-end justify-end justify-items-end cursor-pointer">
                           {/* <Eye size={32}/> */}
-                          <img onClick={handleGlass} src={eye} alt="" className="h-[42px] w-[42px]" />
+                          <img onClick={handleEye} src={eye} alt="" className="h-[32px] w-[32px]" />
                         </div>
                       </div>
                     </div>

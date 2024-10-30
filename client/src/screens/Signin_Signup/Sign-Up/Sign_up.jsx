@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Signup_Styles.css";
-import GlassOn from "../../../assets/icons/glass-on.png";
-import GlassOff from "../../../assets/icons/glass-off.png";
+import Eye from "../../../assets/icons/eye.png";
+import EyeSlash from "../../../assets/icons/eye-slash.png";
+import EyeClosed from "../../../assets/icons/eye-closed.png";
 import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../../assets/icons/logo-google.svg"
@@ -11,17 +12,17 @@ import Input from "../../../components/UI_Elements/Input_Field";
 
 const Sign_up = () => {
 
-  const[glass, setGlass] = useState(GlassOn)
-  const[conGlass, setConGlass] = useState(GlassOn)
+  const[eye, setEye] = useState(Eye)
+  const[conEye, setConEye] = useState(Eye)
 
   const navigate = useNavigate()
 
-  const handleGlass = () => {
-    glass == GlassOn ? setGlass(GlassOff) : setGlass(GlassOn)
+  const handleEye = () => {
+    eye == Eye ? setEye(EyeClosed) : setEye(Eye)
   }
 
-  const handleConGlass = () => {
-    conGlass == GlassOn ? setConGlass(GlassOff) : setConGlass(GlassOn)
+  const handleConEye = () => {
+    conEye == Eye ? setConEye(EyeClosed) : setConEye(Eye)
   }
 
   function gotologin() {
@@ -70,7 +71,7 @@ const Sign_up = () => {
                   <label htmlFor="password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
                   <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer">
                     <div className="flex items-end justify-end justify-items-end">
-                      <img onClick={handleGlass} src={glass} alt="" className="h-[42px] w-[42px]" />
+                      <img onClick={handleEye} src={eye} alt="" className="h-[32px] w-[32px]" />
                     </div>
                     </div>
                 </div>
@@ -82,7 +83,7 @@ const Sign_up = () => {
                   <label htmlFor="confirm_password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Confirm Password</label>
                   <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer">
                     <div className="flex items-end justify-end justify-items-end">
-                      <img onClick={handleConGlass} src={conGlass} alt="" className="h-[42px] w-[42px]" />
+                      <img onClick={handleConEye} src={conEye} alt="" className="h-[32px] w-[32px]" />
                     </div>
                   </div>
                 </div>
