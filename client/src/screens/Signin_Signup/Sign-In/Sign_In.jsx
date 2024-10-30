@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Login_Styles.css";
 import GlassOn from "../../../assets/icons/glass-on.png";
 import GlassOff from "../../../assets/icons/glass-off.png";
-import { Eye, EyeSlash, EyeClosed } from "@phosphor-icons/react";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
 import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../../assets/icons/logo-google.svg";
