@@ -8,7 +8,6 @@ import GoogleLogo from "../../../assets/icons/logo-google.svg";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/UI_Elements/Input_Field";
 import axios from "axios";
-// import axios from '../../../axios';
 
 const Sign_In = () => {
   const navigate = useNavigate();
@@ -60,7 +59,7 @@ const Sign_In = () => {
                   <Input IdName={"email"} InputLabel={"Enter Email : "} InputType={"email"} InputName={" Email"} changeEvent={(e)=> setEmail(e.target.value)}/>
                   <div className="w-full space-y-1">
                     <label htmlFor="password" className="font-geist-semi">
-                      Enter Password :{" "}
+                      Enter Password :
                     </label>
                     <div className="relative w-full">
                       <input type="password" id="password" className="block w-full font-geist-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" required onChange={(e)=> setPassword(e.target.value)}/>

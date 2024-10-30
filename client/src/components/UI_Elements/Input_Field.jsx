@@ -1,17 +1,31 @@
-import React from 'react'
+import React from "react";
 
 const Input = (props) => {
   return (
     <>
-        <div className="w-full space-y-1">
-            <label htmlFor={props.IdName} className="font-geist-semi">{props.InputLabel}</label>
-            <div className="relative w-full">
-                <input required type={props.InputType} id={props.IdName} className="block w-full font-geist-medium font-light px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2  peer focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black placeholder-transparent" placeholder="" onChange={props.changeEvent} />
-                <label htmlFor={props.IdName} className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">{props.InputName}</label>
-            </div>
+      <div className="w-full space-y-1">
+        <label htmlFor={props.IdName} className="font-geist-semi">
+          {props.InputLabel}
+        </label>
+        <div className="relative w-full">
+          <input
+            required
+            type={props.InputType}
+            id={props.IdName}
+            className="block w-full font-geist-medium font-light px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2  peer focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black placeholder-transparent"
+            placeholder=""
+            onChange={props.changeEvent}
+          />
+          <label
+            htmlFor={props.IdName}
+            className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+          >
+            {props.InputName}
+          </label>
         </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;
