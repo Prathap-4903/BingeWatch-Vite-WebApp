@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import "./Home_Styles.css";
+import axios from 'axios';
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";
 import NavBar from '../../components/NavBar/NavBar';
@@ -9,6 +11,21 @@ import History from './History';
 import Profile from './Profile';
 
 const Home_Page = () => { 
+
+  const navigate = useNavigate();
+
+  axios.defaults.withCredentials = true;
+  useEffect(() => {
+    axios.get('http://localhost:5000/auth/verify')
+    .then(res => {
+      if(res.data.status){
+        console.log(res.data)
+      } else {
+        navigate('/sign-in')
+      }
+    })
+  })
+
   return (
     <>
       <div className='main-window flex items-center justify-center w-full h-screen'>

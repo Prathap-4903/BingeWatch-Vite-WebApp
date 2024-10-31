@@ -33,25 +33,30 @@ auth.post("/sign-in", async(req,res) => {
         return res.status(401).json({message: "Invalid Password!"})
     }
 
-    const token = jwt.sign({email: user.email},"MyPrivateKey123", {expiresIn: '7d'})
-    res.cookie('token', token, {httpOnly: true, maxAge: 86400000})
+    const token = jwt.sign({email: user.email}, process.env.KEY, {expiresIn: '1h'})
+    // res.cookie('token', token, {httpOnly: true, maxAge: 86400000})
+    res.cookie("token", token, { httpOnly: true })
     return res.status(200).json({message: "Login Successful!"})
 
 })
 
 //Verify User Using JWT
-auth.get("/verify", async(req,res) => {
-    try{
+const verifyUser = async (req, res, next) => {
+    try {
         const token = req.cookies.token;
-        if(!token){
-            return res.status(401).json({status: false, message: "No Token"});
+        if(!token) {
+            return res.json({ status: false, message: "No Token"});
         }
-        const decode = await jwt.verify(token, "MyPrivateKey123");
-        return res.status(200).json({message: "Authorized User"});
-    } catch(err){
+        const decoded = await jwt.verify(token, process.env.KEY);
+        next()
+    } catch(err) {
         return res.json(err);
     }
-})
+}
+
+auth.get("/verify", verifyUser, (req, res) => {
+    return res.json({status: true, message: "Authorized"})
+});
 
 //Logout User By Clearing Cookies
 auth.get('/logout', (req, res) => {
