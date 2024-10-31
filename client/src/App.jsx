@@ -4,6 +4,7 @@ import Sign_In from './screens/Signin_Signup/Sign-In/Sign_In'
 import Sign_up from './screens/Signin_Signup/Sign-Up/Sign_up';
 import Home_Page from './screens/Home_Page/Home_Page'
 import Welcome from './screens/Welcome_Page/Welcome';
+import 'flowbite/dist/flowbite.min.css';
 
 function App() {
 
