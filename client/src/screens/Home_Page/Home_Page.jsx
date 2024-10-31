@@ -26,6 +26,7 @@ const Home_Page = () => {
     })
   })
 
+
   return (
     <>
       <div className='main-window flex items-center justify-center w-full h-screen'>

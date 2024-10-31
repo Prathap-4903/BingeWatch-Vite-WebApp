@@ -1,13 +1,18 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import Nagi from "../../assets/icons/nagi.jpg"
 
 const Profile = () => {
 
   const navigate = useNavigate();
 
-  function handleLogout() {
-    navigate('/sign-in')
+  const handleLogout = () => {
+    axios.get('http://localhost:5000/auth/logout')
+    .then(res => {
+      if(res.data.status) {
+        navigate('/sign-in')
+      }})
   }
 
   return (
