@@ -8,6 +8,7 @@ import GoogleLogo from "../../../assets/icons/logo-google.svg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../../../components/UI_Elements/Input_Field";
+import { useToast } from "@/hooks/use-toast";
 
 const Sign_up = () => {
 
@@ -15,6 +16,7 @@ const Sign_up = () => {
   const[conEye, setConEye] = useState(Eye)
 
   const navigate = useNavigate()
+  const { toast } = useToast();
 
   const handleEye = () => {
     eye == Eye ? setEye(EyeClosed) : setEye(Eye)
@@ -39,8 +41,17 @@ const Sign_up = () => {
     try{
         const response = await axios.post('http://localhost:5000/auth/sign-up', { name, username, email, password, confirm_password });
         navigate("/sign-in");
+        toast({
+          title: "Sign_Up Done!",
+          description: "Welcome New Homie!"
+        })
     } catch(err){
         console.log(err);
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem with your signup.",
+        })
     }
   };
 

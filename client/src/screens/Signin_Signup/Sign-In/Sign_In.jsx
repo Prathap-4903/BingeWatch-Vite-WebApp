@@ -36,8 +36,8 @@ const Sign_In = () => {
         .then((response) => {
           navigate("/home");
           toast({
-            variant: "outline",
-            description: "Sign_In Done!"
+            title: "Sign_In Done!",
+            description: "Enjoy! Watching Movies With Homies!"
           })
         });
     } catch (err) {

@@ -14,7 +14,10 @@ const Profile = () => {
       .then(res => {
         if (res.data.status) {
           navigate('/sign-in');
-          toast({description: "Sign_Out Done!"})
+          toast({
+            title: "Sign_Out Done!",
+            description: "We Miss You! Don't Be Late.",
+          })
         }
       })
       .catch(err => {
