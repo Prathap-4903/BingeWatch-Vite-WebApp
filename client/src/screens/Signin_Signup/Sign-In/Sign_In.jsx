@@ -86,7 +86,7 @@ const Sign_In = () => {
                       <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer z-50">
                         <div onClick={() => setVisible(!visible)} className="flex items-end justify-end justify-items-end cursor-pointer">
                           {/* <img onClick={handleToggle} src={eye} alt="" className="h-[32px] w-[32px]" /> */}
-                          {visible ? <EyeClosed size={32}/> : <Eye size={32}/>}
+                          {visible ? <EyeClosed size={27}/> : <Eye size={27}/>}
                         </div>
                       </div>
                     </div>
