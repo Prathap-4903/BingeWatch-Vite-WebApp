@@ -6,6 +6,7 @@ import Home_Page from './screens/Home_Page/Home_Page'
 import Welcome from './screens/Welcome_Page/Welcome';
 import JTest from './screens/Join_Page/JTest';
 import { Toaster } from "./components/ui/toaster"
+import Host from './screens/Host_Page/Host';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/sign-in" element={<Sign_In />} />
         <Route path="/sign-up" element={<Sign_up />} />
         <Route path="/home" element={<Home_Page />} />
+        <Route path="/host" element={<Host />} />
         <Route path="/jtest" element={<JTest/>} />
       </Routes>
       <Toaster/>
