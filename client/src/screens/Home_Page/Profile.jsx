@@ -14,10 +14,14 @@ const Profile = () => {
       .then(res => {
         if (res.data.status) {
           navigate('/sign-in');
-          toast({description: "Logout Successful"})
+          toast({description: "Sign_Out Done!"})
         }
       })
       .catch(err => {
+        toast({
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem with logout.",
+        })
         console.log(err);
       });
   }

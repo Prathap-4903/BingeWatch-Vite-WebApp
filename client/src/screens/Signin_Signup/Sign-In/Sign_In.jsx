@@ -8,9 +8,11 @@ import GoogleLogo from "../../../assets/icons/logo-google.svg";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/UI_Elements/Input_Field";
 import axios from "axios";
+import { useToast } from "@/hooks/use-toast";
 
 const Sign_In = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   function gotosignup() {
     navigate("/sign-up");
@@ -33,9 +35,18 @@ const Sign_In = () => {
         .post("http://localhost:5000/auth/sign-in", { email, password })
         .then((response) => {
           navigate("/home");
+          toast({
+            variant: "outline",
+            description: "Sign_In Done!"
+          })
         });
     } catch (err) {
       console.error(err);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your login.",
+      })
     }
   };
 
