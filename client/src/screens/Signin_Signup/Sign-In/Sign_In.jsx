@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Login_Styles.css";
-import Eye from "../../../assets/icons/eye.png";
-import EyeClosed from "../../../assets/icons/eye-closed.png";
+// import Eye from "../../../assets/icons/eye.png";
+// import EyeClosed from "../../../assets/icons/eye-closed.png";
+import { Eye, EyeClosed } from "@phosphor-icons/react";
 import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
 import GoogleLogo from "../../../assets/icons/logo-google.svg";
@@ -9,10 +10,12 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../../components/UI_Elements/Input_Field";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
+//import usePasswordToggle from "../../../hooks/usePasswordToggle";
 
 const Sign_In = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const [visible, setVisible] = useState(false);
 
   function gotosignup() {
     navigate("/sign-up");
@@ -22,14 +25,19 @@ const Sign_In = () => {
   const [password, setPassword] = useState("");
   const [eye, setEye] = useState(Eye);
 
+  const handleToggle = () => {
+    visible == visible ? setVisible(false) : setVisible(true)
+    eye == Eye ? setEye(EyeClosed) : setEye(Eye);
+  }
+
   const handleEye = () => {
     eye == Eye ? setEye(EyeClosed) : setEye(Eye);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // axios.baseUrl("http://localhost:5173")
-    // axios.withCredentials = true
+    axios.baseUrl("http://localhost:5173")
+    axios.withCredentials = true
     try {
       const response = await axios
         .post("http://localhost:5000/auth/sign-in", { email, password })
@@ -73,11 +81,12 @@ const Sign_In = () => {
                       Enter Password :
                     </label>
                     <div className="relative w-full">
-                      <input type="password" id="password" className="block w-full font-geist-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" required onChange={(e)=> setPassword(e.target.value)}/>
+                      <input type={visible ? "text" : "password" } id="password" className="block w-full font-geist-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" required onChange={(e)=> setPassword(e.target.value)}/>
                       <label htmlFor="password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
                       <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer z-50">
-                        <div className="flex items-end justify-end justify-items-end cursor-pointer">
-                          <img onClick={handleEye} src={eye} alt="" className="h-[32px] w-[32px]" />
+                        <div onClick={() => setVisible(!visible)} className="flex items-end justify-end justify-items-end cursor-pointer">
+                          {/* <img onClick={handleToggle} src={eye} alt="" className="h-[32px] w-[32px]" /> */}
+                          {visible ? <EyeClosed size={32}/> : <Eye size={32}/>}
                         </div>
                       </div>
                     </div>
