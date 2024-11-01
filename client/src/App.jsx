@@ -7,6 +7,7 @@ import Welcome from './screens/Welcome_Page/Welcome';
 import JTest from './screens/Join_Page/JTest';
 import { Toaster } from "./components/ui/toaster"
 import Host from './screens/Host_Page/Host';
+import Join from './screens/Join_Page/Join';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/sign-up" element={<Sign_up />} />
         <Route path="/home" element={<Home_Page />} />
         <Route path="/host" element={<Host />} />
+        <Route path="/join" element={<Join />} />
         <Route path="/jtest" element={<JTest/>} />
       </Routes>
       <Toaster/>
