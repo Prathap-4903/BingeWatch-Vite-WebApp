@@ -36,8 +36,8 @@ const Sign_In = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.baseUrl("http://localhost:5173")
-    axios.withCredentials = true
+    // axios.baseUrl("http://localhost:5173")
+    // axios.withCredentials = true
     try {
       const response = await axios
         .post("http://localhost:5000/auth/sign-in", { email, password })
