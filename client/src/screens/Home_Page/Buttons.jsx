@@ -6,7 +6,7 @@ const Buttons = () => {
   const navigate = useNavigate();
 
   const handleJoin = () => {
-    navigate("/jtest");
+    navigate("/join");
   }
 
   const handleHost = () => {
