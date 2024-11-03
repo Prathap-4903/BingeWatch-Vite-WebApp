@@ -31,7 +31,7 @@ const Host = () => {
             <CardContent></CardContent>
             <CardContent className="font-geist-medium text-[18px] w-full ">{code}</CardContent>
             <CardFooter className="flex justify-center">
-              <Button className="w-[180px]">Start Stream</Button>
+              <Button className="w-[180px]">Start The Stream</Button>
             </CardFooter>
           </CardHeader>
         </Card>  
