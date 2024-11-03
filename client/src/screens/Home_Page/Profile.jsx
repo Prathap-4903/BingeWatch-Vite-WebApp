@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Nagi from "../../assets/icons/nagi.jpg";
-import { HiCheck, HiX } from "react-icons/hi";
 import { useToast } from "../../hooks/use-toast"
 
 const Profile = () => {
