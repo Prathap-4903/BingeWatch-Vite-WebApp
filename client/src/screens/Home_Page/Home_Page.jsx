@@ -29,47 +29,39 @@ const Home_Page = () => {
 
   return (
     <>
-      <div className='main-window flex items-center justify-center w-full h-screen'>
-        <div className='grid-layout h-full w-full grid grid-cols-11 grid-rows-9 gap-2 p-2'>
-          <div className='logo-container col-span-2 row-span-1 rounded-xl flex items-center justify-center cursor-pointer'>
-            <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mr-0"/>
-            <img src={LogoText} width="180" height="34.32" className="ml-0 mt-1"/>
+    <div className="main-screen w-full h-screen bg-[#fff]">
+      <div className="flex-layout flex flex-col h-screen w-full gap-2 p-2">
+          <div className="row1 flex gap-2">
+              <div className="col1-logo flex h-[50px] w-[240px] items-center justify-center cursor-pointer ">
+                  <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mr-0"/>
+                  <img src={LogoText} width="180" height="34.32" className="ml-0 mt-1"/>
+              </div>
+              <div className="col2-nav flex items-center justify-end flex-auto ">
+                  <NavBar />
+              </div>
+              <div className="col3-profile flex items-center justify-center h-[71.11px] w-[240px] ">
+                  <Profile />
+              </div>
           </div>
-          <div className='nav-bar col-span-7 row-span-1 rounded-xl flex items-center justify-end'>
-            <NavBar />
+          <div className="row2 flex flex-1 gap-2">
+              <div className="leftPart w-[240px] h-[308.44px] "></div>
+                  <div className="headlines flex items-center justify-center flex-1 ">
+                      <Headlines />
+                  </div>
+                  <div className="history flex w-[240px] h-[308.44px] justify-center items-baseline ">
+                      <History />
+                  </div>
+              </div>
+          <div className="row3 flex flex-1 gap-2">
+              <div className="leftPart w-[240px] "></div>
+              <div className="Buttons flex items-baseline justify-center flex-1 ">
+                  <Buttons />
+              </div>
+              <div className="rightPart w-[240px] "></div>
           </div>
-          <div className='profile-container col-span-2 row-span-1 rounded-xl flex items-center justify-center'>
-            <Profile />
-          </div>
-          <div className='col-span-2 row-span-4 rounded-xl flex items-center justify-center'></div>
-          <div className='headlines col-span-7 row-span-4 rounded-xl flex items-center justify-center'>
-            <Headlines />
-          </div>
-          <div className='history col-span-2 row-span-4 rounded-xl flex items-baseline justify-center'>
-            <History />
-          </div>
-          <div className='col-span-2 row-span-4 rounded-xl flex items-center justify-center'></div>
-          <div className='buttons-div col-span-7 row-span-4 rounded-xl flex items-baseline justify-center'>
-            <Buttons />
-          </div>
-          <div className='col-span-2 row-span-4 rounded-xl flex items-center justify-center'></div>
-        </div>
       </div>
-
-
-
-    {/* <div className="logo-container flex items-center justify-between p-2">
-        <div className="flex ">
-            <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mr-0"/>
-            <img src={LogoText} width="180" height="34.32" className="ml-0 mt-1"/>
-        </div>
-        <div className="flex items-center space-x-3 mr-1">
-            <button className="text-[12px] font-geist-bold font-semibold px-[6px] py-[5px] bg-black text-white border-solid border-2 rounded-[8px] border-black">LOGOUT</button>
-            <div className="profile-container h-9 w-9 rounded-full bg-black"></div>
-        </div>
-    </div> */}
-
-    </>
+    </div>
+  </>
   )
 }
 

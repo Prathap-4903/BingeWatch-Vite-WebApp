@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./Login_Styles.css";
-// import Eye from "../../../assets/icons/eye.png";
-// import EyeClosed from "../../../assets/icons/eye-closed.png";
 import { Eye, EyeClosed } from "@phosphor-icons/react";
 import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
@@ -10,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../../components/UI_Elements/Input_Field";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
-//import usePasswordToggle from "../../../hooks/usePasswordToggle";
+import LogImage from "../../../assets/illustration/SignIn_Illustration.jpg";
+import { Card } from "@/components/ui/card";
 
 const Sign_In = () => {
   const navigate = useNavigate();
@@ -24,15 +23,6 @@ const Sign_In = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [eye, setEye] = useState(Eye);
-
-  const handleToggle = () => {
-    visible == visible ? setVisible(false) : setVisible(true)
-    eye == Eye ? setEye(EyeClosed) : setEye(Eye);
-  }
-
-  const handleEye = () => {
-    eye == Eye ? setEye(EyeClosed) : setEye(Eye);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,14 +50,15 @@ const Sign_In = () => {
 
   return (
     <>
-      <div className="logo-container flex cursor-pointer">
-        <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mt-2 ml-2" />
-        <img src={LogoText} width="180" height="34.32" className="mt-3" />
+      <div className="logo-container flex cursor-pointer m-2">
+        <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mt-1 ml-2" />
+        <img src={LogoText} width="180" height="34.32" className="mt-2" />
       </div>
 
       <form action="" onSubmit={handleSubmit} method="post">
-        <div className="login-screen flex justify-center items-center h-screen">
-          <div className="login-container bg-transparent border-r-[5px] border-b-[5px] pt-4 px-4 pb-4 border-black rounded-3xl border-[2.5px] space-y-2 mx-10 min-w-[340px] w-[500px]">
+        <div className="login-screen flex justify-center items-center h-screen w-full bg-white">
+          <Card className="w-[980px] h-[520px] flex justify-center items-center  ">
+          <div className="login-container bg-white border-r-[5px] border-b-[5px] pt-4 px-4 pb-4 border-black rounded-3xl border-[2.5px] space-y-2 mx-10 min-w-[340px] w-[500px]">
             <h1 className="font-geist-bold text-2xl">Login</h1>
             <p className="font-geist-medium font-[375] ">
               Grab Your Popcorn and Join The Party!
@@ -85,7 +76,6 @@ const Sign_In = () => {
                       <label htmlFor="password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
                       <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer z-50">
                         <div onClick={() => setVisible(!visible)} className="flex items-end justify-end justify-items-end cursor-pointer">
-                          {/* <img onClick={handleToggle} src={eye} alt="" className="h-[32px] w-[32px]" /> */}
                           {visible ? <EyeClosed size={27}/> : <Eye size={27}/>}
                         </div>
                       </div>
@@ -103,6 +93,8 @@ const Sign_In = () => {
               </div>
             </div>
           </div>
+          <img src={LogImage} alt="" className="w-[500px] h-[375px] rounded-xl " />
+          </Card>
         </div>
       </form>
     </>
