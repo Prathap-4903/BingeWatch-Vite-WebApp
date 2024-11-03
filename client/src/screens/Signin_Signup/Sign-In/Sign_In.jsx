@@ -22,7 +22,6 @@ const Sign_In = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [eye, setEye] = useState(Eye);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
