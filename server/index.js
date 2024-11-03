@@ -3,9 +3,11 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import { Auth } from './routes/auth/auth.js';
+import { uuid } from './function/uuid.js';
 import dotenv from 'dotenv';
 dotenv.config()
 
+//API
 const app = express();
 app.use(express.json())
 app.use(cors({
@@ -14,6 +16,7 @@ app.use(cors({
 }))
 app.use(cookieParser())
 app.use("/auth", Auth)
+app.get("/host", uuid)
 
 mongoose.connect(process.env.MONGO_URL)
 .then(() => {
@@ -22,7 +25,6 @@ mongoose.connect(process.env.MONGO_URL)
 .catch((err) => {
     console.log("Error Connecting MongoDB: ", err);
 })
-
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
