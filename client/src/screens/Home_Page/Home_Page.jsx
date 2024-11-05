@@ -43,15 +43,15 @@ const Home_Page = () => {
             <Profile />
           </div>
         </div>
-          <div className="row2 flex flex-1 gap-2">
-              <div className="leftPart w-[240px] h-[308.44px] "></div>
-                  <div className="headlines flex items-center justify-center flex-1 ">
-                      <Headlines />
-                  </div>
-                  <div className="history flex w-[240px] h-[308.44px] justify-center items-baseline ">
-                      <History />
-                  </div>
-              </div>
+        <div className="row2 flex flex-1 gap-2">
+          <div className="leftPart w-[240px] h-[308.44px] "></div>
+          <div className="headlines flex items-center justify-center flex-1 ">
+            <Headlines />
+          </div>
+          <div className="history flex w-[240px] h-[308.44px] justify-center items-baseline ">
+            <History />
+          </div>
+        </div>
           <div className="row3 flex flex-1 gap-2">
               <div className="leftPart w-[240px] "></div>
               <div className="Buttons flex items-baseline justify-center flex-1 ">
