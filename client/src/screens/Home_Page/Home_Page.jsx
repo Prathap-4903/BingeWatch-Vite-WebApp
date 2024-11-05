@@ -52,16 +52,16 @@ const Home_Page = () => {
             <History />
           </div>
         </div>
-          <div className="row3 flex flex-1 gap-2">
-              <div className="leftPart w-[240px] "></div>
-              <div className="Buttons flex items-baseline justify-center flex-1 ">
-                  <Buttons />
-              </div>
-              <div className="rightPart w-[240px] "></div>
+        <div className="row3 flex flex-1 gap-2">
+          <div className="leftPart w-[240px] "></div>
+          <div className="Buttons flex items-baseline justify-center flex-1 ">
+            <Buttons />
           </div>
+          <div className="rightPart w-[240px] "></div>
+        </div>
       </div>
     </div>
-  </>
+    </>
   )
 }
 
