@@ -39,10 +39,10 @@ const Home_Page = () => {
           <div className="col2-nav flex items-center justify-end flex-auto ">
             <NavBar />
           </div>
-              <div className="col3-profile flex items-center justify-center h-[71.11px] w-[240px] ">
-                  <Profile />
-              </div>
+          <div className="col3-profile flex items-center justify-center h-[71.11px] w-[240px] ">
+            <Profile />
           </div>
+        </div>
           <div className="row2 flex flex-1 gap-2">
               <div className="leftPart w-[240px] h-[308.44px] "></div>
                   <div className="headlines flex items-center justify-center flex-1 ">
