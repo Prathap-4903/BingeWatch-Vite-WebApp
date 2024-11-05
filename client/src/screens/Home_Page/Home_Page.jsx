@@ -37,8 +37,8 @@ const Home_Page = () => {
             <img src={LogoText} width="180" height="34.32" className="ml-0 mt-1"/>
           </div>
           <div className="col2-nav flex items-center justify-end flex-auto ">
-                  <NavBar />
-              </div>
+            <NavBar />
+          </div>
               <div className="col3-profile flex items-center justify-center h-[71.11px] w-[240px] ">
                   <Profile />
               </div>
