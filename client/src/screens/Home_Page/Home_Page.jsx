@@ -31,12 +31,12 @@ const Home_Page = () => {
     <>
     <div className="main-screen w-full h-screen bg-[#fff]">
       <div className="flex-layout flex flex-col h-screen w-full gap-2 p-2">
-          <div className="row1 flex gap-2">
-              <div className="col1-logo flex h-[50px] w-[240px] items-center justify-center cursor-pointer ">
-                  <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mr-0"/>
-                  <img src={LogoText} width="180" height="34.32" className="ml-0 mt-1"/>
-              </div>
-              <div className="col2-nav flex items-center justify-end flex-auto ">
+        <div className="row1 flex gap-2">
+          <div className="col1-logo flex h-[50px] w-[240px] items-center justify-center cursor-pointer ">
+            <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mr-0"/>
+            <img src={LogoText} width="180" height="34.32" className="ml-0 mt-1"/>
+          </div>
+          <div className="col2-nav flex items-center justify-end flex-auto ">
                   <NavBar />
               </div>
               <div className="col3-profile flex items-center justify-center h-[71.11px] w-[240px] ">
