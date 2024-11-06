@@ -121,10 +121,8 @@ const Sign_up = () => {
           </div>
         </div>  
         </Card>
-        
       </div>
       </form>
-      
     </>
   )
 }
