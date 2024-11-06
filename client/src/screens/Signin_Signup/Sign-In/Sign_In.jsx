@@ -95,7 +95,6 @@ const Sign_In = () => {
           </div>
           <img src={LogImage} alt="" className="w-[500px] h-[375px] rounded-xl " />
           </Card>
-          
         </div>
       </form>
     </>
