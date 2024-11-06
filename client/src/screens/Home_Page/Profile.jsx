@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Nagi from "../../assets/icons/nagi.jpg";
-import { useToast } from "../../hooks/use-toast"
+import { useToast } from "../../hooks/use-toast";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Profile = () => {
           navigate('/sign-in');
           toast({
             title: "Sign_Out Done!",
-            description: "We Miss You! Don't Be Late.",
+            description: "We Miss You! Comeback Soon.",
           })
         }
       })
