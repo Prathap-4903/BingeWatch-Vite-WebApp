@@ -1,5 +1,6 @@
 import "./Host.css";
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,6 +8,11 @@ import { Button } from '@/components/ui/button';
 const Host = () => {
 
   const [code, setCode] = useState('');
+  const navigate = useNavigate();
+
+  const handleHost = () => {
+    navigate('/stream');
+  }
 
   const generateCode = async() => {
     try{
@@ -31,7 +37,7 @@ const Host = () => {
             <CardContent></CardContent>
             <CardContent className="font-geist-medium text-[18px] w-full ">{code}</CardContent>
             <CardFooter className="flex justify-center">
-              <Button className="w-[180px]">Start The Stream</Button>
+              <Button onClick={handleHost} className="w-[180px]">Start The Stream</Button>
             </CardFooter>
           </CardHeader>
         </Card>  
