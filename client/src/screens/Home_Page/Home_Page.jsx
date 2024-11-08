@@ -19,7 +19,7 @@ const Home_Page = () => {
     axios.get('http://localhost:5000/auth/verify')
     .then(res => {
       if(res.data.status){
-        //console.log(res.data.status);
+        console.log(res.data);
       } else {
         navigate('/sign-in')
       }
