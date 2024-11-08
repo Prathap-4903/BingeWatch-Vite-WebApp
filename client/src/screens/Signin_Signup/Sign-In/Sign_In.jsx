@@ -30,7 +30,7 @@ const Sign_In = () => {
     try {
       const response = await axios.post("http://localhost:5000/auth/sign-in", { email, password }, { withCredentials: true });
       if(response.data.status){
-        console.log(response.data.status);
+        //console.log(response.data.status);
         navigate("/home");
         toast({
           title: "Sign_In Done!",
