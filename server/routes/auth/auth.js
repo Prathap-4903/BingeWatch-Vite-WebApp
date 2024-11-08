@@ -37,7 +37,7 @@ auth.post("/sign-in", async(req,res) => {
     // // res.cookie('token', token, {httpOnly: true, maxAge: 86400000})
     // res.cookie('token', token, { httpOnly: true, maxAge: 360000 })
     // return res.json({status: true, message: "Login Successful!"})
-    
+
     const token = jwt.sign({username: user.username}, process.env.KEY, {expiresIn: '1h'})
     res.cookie('token', token, {httpOnly: true, maxAge: 360000})
     return res.json({status: true, message: "Login Successfully"})
@@ -52,14 +52,15 @@ const verifyUser = async (req, res, next) => {
             return res.json({ status: false, message: "No Token"});
         }
         const decoded = await jwt.verify(token, process.env.KEY);
+        req.user = decoded;
         next()
     } catch(err) {
         return res.json(err);
     }
-}
+};
 
 auth.get("/verify", verifyUser, (req, res) => {
-    return res.json({status: true, message: "Authorized"})
+    return res.json({status: true, message: "Authorized", user: req.user})
 });
 
 //Logout User By Clearing Cookies
