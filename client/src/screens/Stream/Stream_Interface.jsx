@@ -23,7 +23,7 @@ const Stream_Interface = () => {
         </div>
       </div>
       <div className='right-part w-[438px] h-[654px] flex flex-col items-center gap-[7px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
-        <div className='friends-box flex flex-wrap justify-center w-[423px] h-[289.45px] gap-[50px] rounded-[34px] mt-[20px] mb-[30px] '>
+        <div className='friends-box flex flex-wrap justify-center w-[423px] h-[269.45px] gap-[50px] rounded-[34px] mt-[20px] mb-[30px] '>
           <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
           <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
           <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
@@ -34,7 +34,7 @@ const Stream_Interface = () => {
           <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
           <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
         </div>
-        <div className='chat-box w-[423px] h-[350px] flex justify-center items-end gap-[20px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] mt-[10px] mb-[7.5px] '>
+        <div className='chat-box w-[423px] h-[360px] flex justify-center items-end gap-[20px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] mt-[25px] mb-[7.5px] '>
           <div className='text-box w-[310px] h-[45px] bg-[#292929] rounded-[20px] mb-[20px] '></div>
           <div className='send-btn w-[45px] h-[45px] bg-[#292929] rounded-[14px] mb-[20px] '></div>
         </div>
