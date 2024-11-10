@@ -23,7 +23,7 @@ const Stream_Interface = () => {
         </div>
       </div>
       <div className='right-part w-[438px] h-[654px] flex flex-col items-center gap-[7px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
-        <div className='friends-box flex flex-wrap justify-center w-[423px] h-[269.45px] gap-[50px] rounded-[34px] mt-[20px] mb-[30px] '>
+        <div className='friends-box flex flex-wrap justify-center w-[403px] h-[269.45px] gap-[50px] rounded-[34px] mt-[20px] mb-[30px] '>
           <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
           <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
           <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
