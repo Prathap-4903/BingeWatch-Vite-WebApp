@@ -62,7 +62,7 @@ const Sign_up = () => {
         <img src={LogImage} alt="" className="w-[500px] h-[375px]  rounded-xl " />
           <div className="login-container flex flex-col max-h-[451px] bg-white border-r-[5px] border-b-[5px] pt-4 px-4 pb-4 border-black rounded-3xl border-[2.5px] space-y-2 mx-10 min-w-[340px] w-[500px]">
           <h1 className="font-geist-bold text-2xl">Signup</h1>
-          <p className="font-geist-medium font-[375] ">Grab Your Popcorn and Join The Party!</p>
+          <p className="font-geist-medium font-[375]">Grab Your Popcorn and Join The Party!</p>
           <div className="input-body flex flex-wrap space-y-3 mb-3 justify-center items-center w-full flex-grow overflow-y-scroll hide-scrollbar">
             <div className="flex flex-wrap space-y-3 w-full mb-2">
               <div className="input-container space-y-3 w-full">
