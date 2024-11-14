@@ -88,7 +88,7 @@ const Sign_up = () => {
                   <label htmlFor="confirm_password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Confirm Password</label>
                   <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer">
                     <div onClick={() => setConVisible(!conVisible)} className="flex items-end justify-end justify-items-end">
-                      {conVisible ? <EyeClosed size={27} /> : <Eye size={27} /> }
+                      {conVisible ? <Eye size={27} /> : <EyeClosed size={27} /> }
                     </div>
                   </div>
                 </div>
