@@ -7,6 +7,7 @@ import { uuid } from './function/uuid.js';
 import dotenv from 'dotenv';
 dotenv.config()
 
+//Backend
 const app = express();
 app.use(express.json())
 app.use(cors({
