@@ -7,7 +7,6 @@ import { uuid } from './function/uuid.js';
 import dotenv from 'dotenv';
 dotenv.config()
 
-//API
 const app = express();
 app.use(express.json())
 app.use(cors({
@@ -15,6 +14,8 @@ app.use(cors({
     credentials: true
 }))
 app.use(cookieParser())
+
+//API
 app.use("/auth", Auth)
 app.get("/host", uuid)
 
