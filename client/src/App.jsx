@@ -10,7 +10,6 @@ import Stream_Interface from './screens/Stream/Stream_Interface';
 import { Toaster } from "./components/ui/toaster"
 
 function App() {
-
   return (
     <>
       <Routes>
