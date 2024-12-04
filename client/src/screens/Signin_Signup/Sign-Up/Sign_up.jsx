@@ -48,7 +48,6 @@ const Sign_up = () => {
     }
   };
 
-
   return (
     <>
       <div className="logo-container flex cursor-pointer m-2">
