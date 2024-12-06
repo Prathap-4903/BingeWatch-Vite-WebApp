@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 import { Auth } from './routes/auth/auth.js';
 import { uuid } from './function/uuid.js';
 import dotenv from 'dotenv';
