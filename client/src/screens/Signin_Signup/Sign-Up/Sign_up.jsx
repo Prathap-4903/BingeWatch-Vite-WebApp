@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import "./Signup_Styles.css";
-import { Eye, EyeClosed } from "@phosphor-icons/react";
-import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
-import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
-import GoogleLogo from "../../../assets/icons/logo-google.svg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Input from "../../../components/UI_Elements/Input_Field";
-import { useToast } from "@/hooks/use-toast";
+import "./Signup_Styles.css";
+import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
+import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
 import LogImage from "../../../assets/illustration/SignUp_Illustration.jpg";
+import Input from "../../../components/UI_Elements/Input_Field";
+import { Eye, EyeClosed } from "@phosphor-icons/react";
+import GoogleLogo from "../../../assets/icons/logo-google.svg"
+import { useToast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
 
 const Sign_up = () => {
