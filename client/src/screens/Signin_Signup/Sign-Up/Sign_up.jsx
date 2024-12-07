@@ -126,4 +126,4 @@ const Sign_up = () => {
   )
 }
 
-export default Sign_up
+export default Sign_up;
