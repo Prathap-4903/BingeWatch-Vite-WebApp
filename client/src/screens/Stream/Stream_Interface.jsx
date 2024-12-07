@@ -44,4 +44,4 @@ const Stream_Interface = () => {
   )
 }
 
-export default Stream_Interface
+export default Stream_Interface;
