@@ -24,12 +24,8 @@ app.get("/host", uuid);
 
 //MongoDB Connection
 mongoose.connect(process.env.MONGO_URL)
-.then(() => {
-    console.log("Connected to MongoDB - binge_watch");
-})
-.catch((err) => {
-    console.log("Error Connecting MongoDB: ", err);
-})
+.then(() => console.log("Connected to MongoDB - binge_watch"))
+.catch((err) => console.log("Error Connecting MongoDB: ", err))
 
 //Running Server
 const port = process.env.PORT || 5000;
