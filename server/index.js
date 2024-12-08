@@ -23,7 +23,7 @@ app.use("/auth", Auth);
 app.get("/host", uuid);
 
 //MongoDB Connection
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(process.env.MONGO_URL)
 .then(() => {
     console.log("Connected to MongoDB - binge_watch");
 })
