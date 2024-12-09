@@ -15,10 +15,10 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
         return res.status(400).json({message:"User Already Existed!"});
     }
     if(password.length & confirmPassword.length != 8){
-        return res.status(400).json({message: "Password length should be minimum of 8 characters!"});
+        return res.status(401).json({message: "Password length should be minimum of 8 characters!"});
     }
     if(confirmPassword != password){
-        return res.status(400).json({message:"Password not matched!"});
+        return res.status(401).json({message:"Password not matched!"});
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     if(!req.file) {
@@ -36,12 +36,12 @@ auth.post("/sign-in", async(req,res) => {
     const{email, password} = req.body;
     const user = await UserModel.findOne({email});
     if(!user){
-        return res.status(401).json({message: "Invalid Email!"})
+        return res.status(401).json({message: "Invalid Email!"});
     }
 
-    const validPassword = await bcrypt.compare(password, user.password)
+    const validPassword = await bcrypt.compare(password, user.password);
     if(!validPassword){
-        return res.status(401).json({message: "Invalid Password!"})
+        return res.status(401).json({message: "Invalid Password!"});
     }
 
     // const token = jwt.sign({email: user.email}, process.env.KEY, {expiresIn: '1h'})
@@ -70,13 +70,13 @@ auth.post("/sign-in", async(req,res) => {
 // };
 
 auth.get("/verify", verifyUser, (req, res) => {
-    return res.status(200).json({status: true, message: "Authorized", user: req.user})
+    return res.status(200).json({status: true, message: "Authorized", user: req.user});
 });
 
 //Logout User By Clearing Cookies
 auth.get('/logout', (req, res) => {
-    res.clearCookie('token')
-    return res.status(200).json({status: true, message:"Logout Successful!"})
+    res.clearCookie('token');
+    return res.status(200).json({status: true, message:"Logout Successful!"});
 })
 
 export {auth as Auth};
