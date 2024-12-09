@@ -22,7 +22,7 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
         name, username, email, password: hashedPassword, confirmPassword, picture: req.file.path
     })
     await newUser.save();
-    return res.status(200).json({message: "User Record Saved!"})
+    return res.status(200).json({status: true, message: "User Record Saved!"})
 })
 
 //Login Data To Authenticate User Using MongoDB
@@ -45,7 +45,7 @@ auth.post("/sign-in", async(req,res) => {
 
     const token = jwt.sign({username: user.username}, process.env.KEY, {expiresIn: '1h'})
     res.cookie('token', token, {httpOnly: true, maxAge: 360000})
-    return res.json({status: true, message: "Login Successfully"})
+    return res.status(200).json({status: true, message: "Login Successfully"})
 
 })
 
@@ -65,7 +65,7 @@ auth.post("/sign-in", async(req,res) => {
 // };
 
 auth.get("/verify", verifyUser, (req, res) => {
-    return res.json({status: true, message: "Authorized", user: req.user})
+    return res.status(200).json({status: true, message: "Authorized", user: req.user})
 });
 
 //Logout User By Clearing Cookies

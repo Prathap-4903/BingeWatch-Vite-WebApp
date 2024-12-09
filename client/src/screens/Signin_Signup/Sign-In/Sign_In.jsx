@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Login_Styles.css";
-import { Eye, EyeClosed } from "@phosphor-icons/react";
 import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
-import GoogleLogo from "../../../assets/icons/logo-google.svg";
-import { useNavigate } from "react-router-dom";
-import Input from "../../../components/UI_Elements/Input_Field";
-import axios from "axios";
-import { useToast } from "@/hooks/use-toast";
 import LogImage from "../../../assets/illustration/SignIn_Illustration.jpg";
+import Input from "../../../components/UI_Elements/Input_Field";
+import { Eye, EyeClosed } from "@phosphor-icons/react";
+import GoogleLogo from "../../../assets/icons/logo-google.svg";
+import { useToast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
 
 const Sign_In = () => {
@@ -16,12 +16,12 @@ const Sign_In = () => {
   const { toast } = useToast();
   const [visible, setVisible] = useState(false);
 
-  function gotosignup() {
-    navigate("/sign-up");
+  function moveSignup() {
+    navigate('/sign-up');
   }
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,7 +82,7 @@ const Sign_In = () => {
                   </div>
                 </div>
                 <div className="button-container flex flex-col flex-wrap space-y-3 justify-center w-full">
-                  <button onClick={gotosignup} className="font-geist-medium font-thin underline text-[14px] bg-transparent hover:scale-[1.025] ease-in-out">Don't have an account? Click Here to Sign Up!</button>
+                  <button onClick={moveSignup} className="font-geist-medium font-thin underline text-[14px] bg-transparent hover:scale-[1.025] ease-in-out">Don't have an account? Click Here to Sign Up!</button>
                   <button type="submit" className="font-geist-bold text-white bg-black border-2 border-black py-1 rounded-xl hover:bg-white hover:text-black hover:scale-100 hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">Sign In</button>
                   <button className="flex justify-center gap-2 font-geist-semi border-2 font-medium border-black py-1 rounded-xl bg-transparent hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">
                     <img src={GoogleLogo} alt="" className="h-5 w-5 mt-[1.7px] cursor-pointer" />

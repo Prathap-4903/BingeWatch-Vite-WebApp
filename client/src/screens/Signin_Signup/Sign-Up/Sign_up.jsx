@@ -1,43 +1,55 @@
 import React, { useState } from "react";
-import "./Signup_Styles.css";
-import { Eye, EyeClosed } from "@phosphor-icons/react";
-import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
-import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
-import GoogleLogo from "../../../assets/icons/logo-google.svg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Input from "../../../components/UI_Elements/Input_Field";
-import { useToast } from "@/hooks/use-toast";
+import "./Signup_Styles.css";
+import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
+import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
 import LogImage from "../../../assets/illustration/SignUp_Illustration.jpg";
+import Input from "../../../components/UI_Elements/Input_Field";
+import { Eye, EyeClosed } from "@phosphor-icons/react";
+import GoogleLogo from "../../../assets/icons/logo-google.svg";
+import { useToast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
 
 const Sign_up = () => {
 
-  const [visible, setVisible] = useState(false)
-  const [conVisible, setConVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
+  const [conVisible, setConVisible] = useState(false);
 
   const navigate = useNavigate()
   const { toast } = useToast();
 
-  function gotologin() {
-    navigate("/sign-in")
+  function moveLogin() {
+    navigate('/sign-in');
   }
 
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirm_password, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [picture, setPicture] = useState('');
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("username", username);
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("confirmPassword", confirmPassword);
+  formData.append("picture", picture);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-        const response = await axios.post('http://localhost:5000/auth/sign-up', { name, username, email, password, confirm_password });
-        navigate("/sign-in");
-        toast({
-          title: "Sign_Up Done!",
-          description: "Welcome New Homie!"
-        })
+        const response = await axios.post('http://localhost:5000/auth/sign-up', formData, { withCredentials: true });
+        if(response.data.status){
+          console.log(response.data);
+          navigate("/sign-in");
+          toast({
+            title: "Sign_Up Done!",
+            description: "Welcome New Homie!"
+          })
+        }
     } catch(err){
         console.log(err);
         toast({
@@ -56,7 +68,7 @@ const Sign_up = () => {
         <img src={LogoText} width="180" height="34.32" className="mt-2" />
       </div>
 
-      <form action="" onSubmit={handleSubmit} method="post">
+      <form action="" onSubmit={handleSubmit} method="post" encType="multipart/form-data">
         <div className="login-screen flex justify-center items-center h-screen w-full bg-white">
         <Card className="w-[980px] h-[520px] flex justify-center items-center  ">
         <img src={LogImage} alt="" className="w-[500px] h-[375px]  rounded-xl " />
@@ -104,7 +116,7 @@ const Sign_up = () => {
                           <p className="mb-2 text-sm text-black dark:text-black font-geist-semi font-semibold"><span className="font-geist-medium font-thin">Click To Upload</span> or Drag And Drop</p>
                           <p className="text-xs text-black font-geist-medium font-thin">JPG/PNG (MAX. 800x400px)</p>
                       </div>
-                      <input id="picture" type="file" className="hidden" />
+                      <input id="picture" name="picture" type="file" className="hidden" onChange={(e) => setPicture(e.target.files[0])} />
                   </label>
               </div> 
 
@@ -112,7 +124,7 @@ const Sign_up = () => {
           </div>
           </div>
           <div className="button-container flex flex-col flex-wrap space-y-3 justify-center w-full">
-            <button onClick={gotologin} className="font-geist-medium font-thin underline text-[13px] bg-transparent hover:scale-[1.025] ease-in-out">Already have an account? Click Here to Sign In!</button>
+            <button onClick={moveLogin} className="font-geist-medium font-thin underline text-[13px] bg-transparent hover:scale-[1.025] ease-in-out">Already have an account? Click Here to Sign In!</button>
             <button type="submit" className="font-geist-bold text-white bg-black border-2 border-black py-1 rounded-xl hover:bg-white hover:text-black hover:scale-100 hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">Sign Up</button>
             <button className="flex justify-center gap-2 font-geist-semi border-2 font-medium border-black py-1 rounded-xl bg-transparent hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">
               <img src={GoogleLogo} alt="" className="h-5 w-5 mt-[1.7px]" />
@@ -127,4 +139,4 @@ const Sign_up = () => {
   )
 }
 
-export default Sign_up
+export default Sign_up;
