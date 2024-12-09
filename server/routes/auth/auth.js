@@ -15,10 +15,10 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
         return res.status(400).json({message:"User Already Existed!"})
     }
     if(password.length & confirmPassword.length != 8){
-        return res.status(400).json({message: "Password Length Should Be Minimum of 8 Characters"});
+        return res.status(400).json({message: "Password length should be minimum of 8 characters!"});
     }
     if(confirmPassword != password){
-        return res.status(400).json({message:"Password Not Matched!"});
+        return res.status(400).json({message:"Password not matched!"});
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     if(!req.file) {

@@ -54,7 +54,8 @@ const Sign_up = () => {
         console.log(err);
         toast({
           variant: "destructive",
-          title: "Uh oh! Something went wrong.",
+          //title: "Uh oh! Something went wrong.",
+          title: `Uh oh! ${err.response.data.message}`,
           description: "There was a problem with your signup.",
         })
     }
