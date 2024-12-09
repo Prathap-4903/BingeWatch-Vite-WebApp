@@ -2,19 +2,24 @@ import express from "express";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import UserModel from "../../modal/UserModel.js"
+import { upload } from '../../middlewares/multer/upload.js';
+import verifyUser from '../../middlewares/auth/verifyUser.js';
 
 const auth = express.Router();
 
 //Signup Page Data To Store In MongoDB
-auth.post("/sign-up", async(req,res) => {
-    const{name, username, email, password, confirm_password} = req.body;
-    const user = await UserModel.findOne({email})
+auth.post("/sign-up", upload.single("picture"), async(req,res) => {
+    const {name, username, email, password, confirmPassword} = req.body;
+    const user = await UserModel.findOne({ email })
     if(user){
         return res.status(400).json({message:"User Already Existed!"})
     }
     const hashedPassword = await bcrypt.hash(password, 10);
+    if(!req.file) {
+        return res.status(500).json({ error: "No File Found" });
+    }
     const newUser = new UserModel({
-        name, username, email, password: hashedPassword, confirm_password
+        name, username, email, password: hashedPassword, confirmPassword, picture: req.file.path
     })
     await newUser.save();
     return res.status(200).json({message: "User Record Saved!"})
@@ -45,19 +50,19 @@ auth.post("/sign-in", async(req,res) => {
 })
 
 //Verify User Using JWT
-const verifyUser = async (req, res, next) => {
-    try {
-        const token = req.cookies.token;
-        if(!token) {
-            return res.json({ status: false, message: "No Token"});
-        }
-        const decoded = await jwt.verify(token, process.env.KEY);
-        req.user = decoded;
-        next()
-    } catch(err) {
-        return res.json(err);
-    }
-};
+// const verifyUser = async (req, res, next) => {
+//     try {
+//         const token = req.cookies.token;
+//         if(!token) {
+//             return res.json({ status: false, message: "No Token"});
+//         }
+//         const decoded = await jwt.verify(token, process.env.KEY);
+//         req.user = decoded;
+//         next()
+//     } catch(err) {
+//         return res.json(err);
+//     }
+// };
 
 auth.get("/verify", verifyUser, (req, res) => {
     return res.json({status: true, message: "Authorized", user: req.user})
