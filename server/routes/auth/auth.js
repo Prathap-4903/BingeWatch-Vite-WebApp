@@ -14,6 +14,9 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
     if(user){
         return res.status(400).json({message:"User Already Existed!"})
     }
+    if(confirmPassword != password){
+        return res.status(400).json({message:"Password Not Matched!"});
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
     if(!req.file) {
         return res.status(500).json({ error: "No File Found" });
@@ -43,9 +46,9 @@ auth.post("/sign-in", async(req,res) => {
     // res.cookie('token', token, { httpOnly: true, maxAge: 360000 })
     // return res.json({status: true, message: "Login Successful!"})
 
-    const token = jwt.sign({username: user.username}, process.env.KEY, {expiresIn: '1h'})
-    res.cookie('token', token, {httpOnly: true, maxAge: 360000})
-    return res.status(200).json({status: true, message: "Login Successfully"})
+    const token = jwt.sign({username: user.username}, process.env.KEY, {expiresIn: '30d'});
+    res.cookie('token', token, {httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000});
+    return res.status(200).json({status: true, message: "Login Successfully"});
 
 })
 
