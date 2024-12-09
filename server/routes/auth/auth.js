@@ -1,7 +1,7 @@
 import express from "express";
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
-import UserModel from "../../modal/UserModel.js"
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import UserModel from "../../modal/UserModel.js";
 import { upload } from '../../middlewares/multer/upload.js';
 import verifyUser from '../../middlewares/auth/verifyUser.js';
 
@@ -10,9 +10,9 @@ const auth = express.Router();
 //Signup Page Data To Store In MongoDB
 auth.post("/sign-up", upload.single("picture"), async(req,res) => {
     const {name, username, email, password, confirmPassword} = req.body;
-    const user = await UserModel.findOne({ email })
+    const user = await UserModel.findOne({ email });
     if(user){
-        return res.status(400).json({message:"User Already Existed!"})
+        return res.status(400).json({message:"User Already Existed!"});
     }
     if(password.length & confirmPassword.length != 8){
         return res.status(400).json({message: "Password length should be minimum of 8 characters!"});
@@ -26,9 +26,9 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
     }
     const newUser = new UserModel({
         name, username, email, password: hashedPassword, confirmPassword, picture: req.file.path
-    })
+    });
     await newUser.save();
-    return res.status(200).json({status: true, message: "User Record Saved!"})
+    return res.status(200).json({status: true, message: "User Record Saved!"});
 })
 
 //Login Data To Authenticate User Using MongoDB
@@ -45,7 +45,6 @@ auth.post("/sign-in", async(req,res) => {
     }
 
     // const token = jwt.sign({email: user.email}, process.env.KEY, {expiresIn: '1h'})
-    // // res.cookie('token', token, {httpOnly: true, maxAge: 86400000})
     // res.cookie('token', token, { httpOnly: true, maxAge: 360000 })
     // return res.json({status: true, message: "Login Successful!"})
 
