@@ -1,4 +1,6 @@
 .main-screen{
     background-image: url("../../assets/illustration/Background_Illustration.jpg");
     background-position-x: 15px;
+    /* background-position-x: 90px;
+    background-position-y: 18px; */
 }

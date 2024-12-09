@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Home_Styles.css";
 import axios from 'axios';
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
@@ -11,7 +11,6 @@ import History from './History';
 import Profile from './Profile';
 
 const Home_Page = () => { 
-
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;

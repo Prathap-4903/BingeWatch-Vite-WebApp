@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Nagi from "../../assets/icons/nagi.jpg";
 import { useToast } from "../../hooks/use-toast";
 
 const Profile = () => {
+  const [username, setUsername] = useState();
   const navigate = useNavigate();
-  const { toast } = useToast()
+  const { toast } = useToast();
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/auth/verify', { withCredentials: true })
+    .then(res => {
+      if(res.data.status){
+        //console.log(res.data);
+        setUsername(res.data.user.username);
+      } else {
+        navigate('/sign-in')
+      }
+    })
+  }, [])
 
   const handleLogout = () => {
     axios.get('http://localhost:5000/auth/logout')
@@ -40,6 +53,7 @@ const Profile = () => {
           </button>
         </div>
         <div className="profile-container h-11 w-11 rounded-full bg-black cursor-pointer">
+          {/* <p>{username}</p> */}
           <img src={Nagi} alt="Pic" className='rounded-full' />
         </div>
       </div>

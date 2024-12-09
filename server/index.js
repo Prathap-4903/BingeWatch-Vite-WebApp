@@ -15,6 +15,9 @@ app.use(cors({
     credentials: true
 }))
 app.use(cookieParser())
+// app.use("/", (req, res) => {
+//     res.send("Welcome To BingeWatch Watch Party - This is The Server of BingeWatch")
+// })
 app.use("/auth", Auth)
 app.get("/host", uuid)
 
