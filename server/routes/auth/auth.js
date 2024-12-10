@@ -14,6 +14,9 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
     if(user){
         return res.status(400).json({message:"User Already Existed!"})
     }
+    if(password.length & confirmPassword.length != 8){
+        return res.status(400).json({message: "Password Length Should Be Minimum of 8 Characters"});
+    }
     if(confirmPassword != password){
         return res.status(400).json({message:"Password Not Matched!"});
     }
