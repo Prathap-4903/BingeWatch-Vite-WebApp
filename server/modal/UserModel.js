@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-    name:{type: String, required: true},
-    username:{type: String, required: true, unique: true},
-    email:{type: String, required: true, unique: true},
-    password:{type: String, required: true},
-    confirmPassword:{type: String, required: true},
-    picture:{type: String}
+    name: { type: String, required: true },
+    username: { type: String, required: true, unique: true},
+    email: { type: String, required: true, unique: true},
+    password: { type: String, required: true, minlength: 8},
+    confirmPassword: { type: String, required: true, minlength: 8},
+    picture: { type: String}
 })
 UserSchema.set('timestamps', true);
 
