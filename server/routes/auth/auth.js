@@ -14,7 +14,7 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
     if(user){
         return res.status(400).json({message:"User Already Existed!"});
     }
-    if(password.length & confirmPassword.length != 8){
+    if(password.length < 8){
         return res.status(401).json({message: "Password length should be minimum of 8 characters!"});
     }
     if(confirmPassword != password){
@@ -22,13 +22,20 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     if(!req.file) {
-        return res.status(500).json({ error: "No File Found" });
+        // return res.status(500).json({ error: "No File Found" });
+        const path = "uploads\\Binge_Watch_Default_Profile.jpg";
+        const newUser = new UserModel({
+            name, username, email, password: hashedPassword, confirmPassword, picture: path
+        });
+        await newUser.save();
+        return res.status(200).json({status: true, message: "User Record Saved!"});
+    } else {
+        const newUser = new UserModel({
+            name, username, email, password: hashedPassword, confirmPassword, picture: file.path
+        });
+        await newUser.save();
+        return res.status(200).json({status: true, message: "User Record Saved!"});
     }
-    const newUser = new UserModel({
-        name, username, email, password: hashedPassword, confirmPassword, picture: req.file.path
-    });
-    await newUser.save();
-    return res.status(200).json({status: true, message: "User Record Saved!"});
 })
 
 //Login Data To Authenticate User Using MongoDB

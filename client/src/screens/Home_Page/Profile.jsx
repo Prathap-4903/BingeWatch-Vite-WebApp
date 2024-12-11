@@ -70,7 +70,7 @@ const Profile = () => {
           <div>
             <h1 className='text-[15px] font-geist-semi py-1  '>{username}</h1>
           </div>
-          <div className="profile-container h-11 w-11 rounded-full bg-black">
+          <div className="profile-container h-11 w-11 rounded-full">
             <img src={picture} alt="Pic" className='rounded-full' />
           </div>
         </div>
