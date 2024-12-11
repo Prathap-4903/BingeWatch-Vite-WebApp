@@ -1,25 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Nagi from "../../assets/icons/nagi.jpg";
+// import Nagi from "../../assets/icons/nagi.jpg";
 import { useToast } from "../../hooks/use-toast";
 
 const Profile = () => {
-  const [username, setUsername] = useState();
+  const [username, setUsername] = useState('');
+  const [picture, setPicture] = useState('');
   const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/auth/verify', { withCredentials: true })
-    .then(res => {
-      if(res.data.status){
-        //console.log(res.data);
-        setUsername(res.data.user.username);
-      } else {
-        navigate('/sign-in')
-      }
-    })
+    handleVerify();
   }, [])
+
+  const handleVerify = async () => {
+    try{
+      const response = await axios.get('http://localhost:5000/auth/verify', { withCredentials: true });
+      if(response.data.status){
+        //console.log(response.data.user.id);
+
+        const userResponse = await axios.get(`http://localhost:5000/user/${response.data.user.id}`, { withCredentials: true });
+        if(userResponse.data.status){
+          const userData = userResponse.data.data;
+          console.log(userData);
+          setUsername(userData.username);
+          setPicture(userData.picture);
+        }
+      } else {
+        navigate('sign-in');
+      }
+    } catch(err) {
+      console.log(err);
+    }
+  }
 
   const handleLogout = () => {
     axios.get('http://localhost:5000/auth/logout')
@@ -53,8 +67,7 @@ const Profile = () => {
           </button>
         </div>
         <div className="profile-container h-11 w-11 rounded-full bg-black cursor-pointer">
-          {/* <p>{username}</p> */}
-          <img src={Nagi} alt="Pic" className='rounded-full' />
+          <img src={picture} alt="Pic" className='rounded-full' />
         </div>
       </div>
     </>

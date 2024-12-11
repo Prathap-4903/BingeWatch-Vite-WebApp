@@ -7,6 +7,7 @@ import { Auth } from './routes/auth/auth.js';
 import { uuid } from './function/uuid.js';
 import { userApi } from './routes/user/user.js';
 import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
 dotenv.config()
 
 //Backend Configuration
@@ -17,7 +18,11 @@ app.use(cors({
     credentials: true
 }));
 app.use(cookieParser());
-//app.use('/uploads', express.static(path.join(__dirname, './uploads')));
+
+//File Access Configuration
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/uploads', express.static(path.join(__dirname, './uploads')));
 
 //API
 app.get('/', (req, res) => res.send("Welcome To BingeWatch Watch Party - The Server Side of BingeWatch"));
