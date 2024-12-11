@@ -15,7 +15,7 @@ const Home_Page = () => {
 
   axios.defaults.withCredentials = true;
   useEffect(() => {
-    axios.get('http://localhost:5000/auth/verify')
+    axios.get('http://localhost:5000/auth/verify', { withCredentials: true })
     .then(res => {
       if(res.data.status){
         console.log(res.data);
@@ -38,7 +38,7 @@ const Home_Page = () => {
           <div className="col2-nav flex items-center justify-end flex-auto ">
             <NavBar />
           </div>
-          <div className="col3-profile flex items-center justify-center h-[71.11px] w-[240px] ">
+          <div className="col3-profile flex items-center justify-center h-[71.11px] w-[275px] mr-8 ">
             <Profile />
           </div>
         </div>

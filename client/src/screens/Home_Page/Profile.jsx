@@ -57,7 +57,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className='flex flex-wrap gap- items-center justify-center gap-6'>
+      <div className='flex items-center justify-center gap-5'>
         <div>
           <button
             onClick={handleLogout}
@@ -66,8 +66,13 @@ const Profile = () => {
             LOGOUT
           </button>
         </div>
-        <div className="profile-container h-11 w-11 rounded-full bg-black cursor-pointer">
-          <img src={picture} alt="Pic" className='rounded-full' />
+        <div className='flex justify-center items-center gap-5 cursor-pointer'>
+          <div>
+            <h1 className='text-[15px] font-geist-semi py-1  '>{username}</h1>
+          </div>
+          <div className="profile-container h-11 w-11 rounded-full bg-black">
+            <img src={picture} alt="Pic" className='rounded-full' />
+          </div>
         </div>
       </div>
     </>
