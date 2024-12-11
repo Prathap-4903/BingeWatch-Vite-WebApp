@@ -20,10 +20,10 @@ const Home_Page = () => {
       if(res.data.status){
         console.log(res.data);
       } else {
-        navigate('/sign-in')
+        navigate('/sign-in');
       }
     })
-  })
+  }, [])
 
 
   return (
@@ -64,4 +64,4 @@ const Home_Page = () => {
   )
 }
 
-export default Home_Page
+export default Home_Page;

@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import { Auth } from './routes/auth/auth.js';
 import { uuid } from './function/uuid.js';
+import { userApi } from './routes/user/user.js';
 import dotenv from 'dotenv';
 dotenv.config()
 
@@ -19,9 +20,10 @@ app.use(cookieParser());
 //app.use('/uploads', express.static(path.join(__dirname, './uploads')));
 
 //API
-app.get("/", (req, res) => res.send("Welcome To BingeWatch Watch Party - The Server Side of BingeWatch"));
-app.use("/auth", Auth);
-app.get("/host", uuid);
+app.get('/', (req, res) => res.send("Welcome To BingeWatch Watch Party - The Server Side of BingeWatch"));
+app.use('/auth', Auth);
+app.get('/host', uuid);
+app.use('/user', userApi);
 
 //MongoDB Connection
 mongoose.connect(process.env.MONGO_URL)

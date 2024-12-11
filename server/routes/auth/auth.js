@@ -48,7 +48,7 @@ auth.post("/sign-in", async(req,res) => {
     // res.cookie('token', token, { httpOnly: true, maxAge: 360000 })
     // return res.json({status: true, message: "Login Successful!"})
 
-    const token = jwt.sign({username: user.username}, process.env.KEY, {expiresIn: '30d'});
+    const token = jwt.sign({id: user._id, username: user.username}, process.env.KEY, {expiresIn: '30d'});
     res.cookie('token', token, {httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000});
     return res.status(200).json({status: true, message: "Login Successfully"});
 
