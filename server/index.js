@@ -8,13 +8,13 @@ import { uuid } from './function/uuid.js';
 import { userApi } from './routes/user/user.js';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
-dotenv.config()
+dotenv.config();
 
 //Backend Configuration
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: [process.env.CORS_URL],
+    origin: [process.env.FRONTEND_URL],
     credentials: true
 }));
 app.use(cookieParser());
