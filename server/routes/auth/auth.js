@@ -36,7 +36,7 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
         await newUser.save();
         return res.status(200).json({status: true, message: "User Record Saved!"});
     }
-})
+});
 
 //Login Data To Authenticate User Using MongoDB
 auth.post("/sign-in", async(req,res) => {
@@ -58,24 +58,9 @@ auth.post("/sign-in", async(req,res) => {
     const token = jwt.sign({id: user._id, username: user.username}, process.env.KEY, {expiresIn: '30d'});
     res.cookie('token', token, {httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000});
     return res.status(200).json({status: true, message: "Login Successfully"});
+});
 
-})
-
-//Verify User Using JWT
-// const verifyUser = async (req, res, next) => {
-//     try {
-//         const token = req.cookies.token;
-//         if(!token) {
-//             return res.json({ status: false, message: "No Token"});
-//         }
-//         const decoded = await jwt.verify(token, process.env.KEY);
-//         req.user = decoded;
-//         next()
-//     } catch(err) {
-//         return res.json(err);
-//     }
-// };
-
+//Verify User Route
 auth.get("/verify", verifyUser, (req, res) => {
     return res.status(200).json({status: true, message: "Authorized", user: req.user});
 });
@@ -84,6 +69,6 @@ auth.get("/verify", verifyUser, (req, res) => {
 auth.get('/logout', (req, res) => {
     res.clearCookie('token');
     return res.status(200).json({status: true, message:"Logout Successful!"});
-})
+});
 
 export {auth as Auth};
