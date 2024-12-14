@@ -25,7 +25,6 @@ const Home_Page = () => {
     })
   }, [])
 
-
   return (
     <>
     <div className="main-screen w-full h-screen bg-[#fff]">
