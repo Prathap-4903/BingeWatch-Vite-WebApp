@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import Nagi from "../../assets/icons/nagi.jpg";
 import { useToast } from "../../hooks/use-toast";
+// import Nagi from "../../assets/icons/nagi.jpg";
 
 const Profile = () => {
   const [username, setUsername] = useState('');
@@ -57,21 +57,16 @@ const Profile = () => {
 
   return (
     <>
-      <div className='flex items-center justify-center gap-5'>
+      <div className='flex items-center justify-center gap-5 '>
         <div>
-          <button
-            onClick={handleLogout}
-            className="text-[13px] font-geist-bold font-bold px-3 py-[6px] bg-white text-black border-solid border-2 border-r-4 border-b-4 rounded-[8px] border-black hover:bg-black hover:text-white transition-all ease-in-out duration-500"
-          >
-            LOGOUT
-          </button>
+          <button onClick={handleLogout} className='text-[13px] font-geist-bold font-bold px-3 py-[6px] bg-white text-black border-solid border-2 border-r-4 border-b-4 rounded-[8px] border-black hover:bg-black hover:text-white transition-all ease-in-out duration-500 '>LOGOUT</button>
         </div>
-        <div className='flex justify-center items-center gap-5 cursor-pointer'>
+        <div className='flex justify-center items-center gap-5 cursor-pointer '>
           <div>
-            <h1 className='text-[15px] font-geist-semi py-1  '>{username}</h1>
+            <h1 className='text-[15px] font-geist-semi py-1 '>{username}</h1>
           </div>
-          <div className="profile-container h-11 w-11 rounded-full">
-            <img src={picture} alt="Pic" className='rounded-full' />
+          <div className='profile-container h-11 w-11 rounded-full'>
+            <img src={picture} alt='Profile-Pic' className='rounded-full' />
           </div>
         </div>
       </div>
