@@ -14,7 +14,6 @@ const Join = () => {
             <CardDescription className="font-geist-semi text-[14px]" >Enter the code shared by your homie!</CardDescription>
             <CardContent></CardContent>
             <CardContent className="font-geist-medium text-[18px] w-full ">
-              {/* <Input type="text" placeholder="Enter the code" /> */}
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label htmlFor="code">Enter Code </Label>
                 <Input type="text" id="code" placeholder="Enter the code" className="pl-10 placeholder:absolute placeholder:left-4 " />
