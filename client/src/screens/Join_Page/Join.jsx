@@ -3,11 +3,16 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 
 const Join = () => {
+  const nav = useNavigate();
   const socket = io('http://localhost:5000');
 
+  const handleJoinStream = () => {
+    nav('/stream');
+  }
   return (
     <>
       <div className='host-screen w-full h-screen bg-white flex justify-center items-center '>
@@ -23,7 +28,7 @@ const Join = () => {
               </div>
             </CardContent>
             <CardFooter className="flex justify-center">
-              <Button className="w-[180px]">Enter The Stream</Button>
+              <Button onClick={handleJoinStream} className="w-[180px]">Enter The Stream</Button>
             </CardFooter>
           </CardHeader>
         </Card>  
