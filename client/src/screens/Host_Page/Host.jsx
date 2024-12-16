@@ -6,7 +6,6 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/components/ui/button';
 
 const Host = () => {
-
   const [code, setCode] = useState('');
   const navigate = useNavigate();
 
@@ -16,7 +15,7 @@ const Host = () => {
 
   const generateCode = async() => {
     try{
-      const code = await axios.get("http://localhost:5000/host")
+      const code = await axios.get("http://localhost:5000/host", { withCredentials: true });
       setCode(code.data);
     } catch(err){
       console.log("Error Generating Code : ", err);
@@ -46,4 +45,4 @@ const Host = () => {
   )
 }
 
-export default Host
+export default Host;

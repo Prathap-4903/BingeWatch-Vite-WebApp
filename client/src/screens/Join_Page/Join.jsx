@@ -1,10 +1,13 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import React from 'react'
+import React from 'react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { io } from 'socket.io-client';
 
 const Join = () => {
+  const socket = io('http://localhost:5000');
+
   return (
     <>
       <div className='host-screen w-full h-screen bg-white flex justify-center items-center '>
