@@ -16,7 +16,6 @@ const Welcome = () => {
         <h1 className='font-geist-bold text-[24px]'>Welcome To BingeWatch - Stream Movies With Friends!</h1> 
         <Button onClick={handleWelcome}>Get Started</Button>
     </div>
-        
     </>
   )
 }
