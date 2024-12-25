@@ -50,7 +50,7 @@ mongoose.connect(process.env.MONGO_URL)
 
 //Socket.io
 io.on('connection', (socket) => {
-    console.log('New User Connected');
+    console.log('New User Connected', socket.id);
     socket.on('disconnect', () => {
         console.log('User Disconnected');
     });
