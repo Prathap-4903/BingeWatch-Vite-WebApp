@@ -23,12 +23,12 @@ const io = new Server(server, {
     }
 });
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors({
     origin: [process.env.FRONTEND_URL],
     credentials: true,
     methods: ['GET', 'POST']
 }));
-app.use(cookieParser());
 
 //File Access Configuration
 const __filename = fileURLToPath(import.meta.url);
