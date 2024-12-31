@@ -37,7 +37,7 @@ app.use('/uploads', express.static(path.join(__dirname, './uploads')));
 
 //API
 // app.get('/', (req, res) => res.send("Welcome To BingeWatch Watch Party - The Server Side of BingeWatch"));
-app.get('/', (req, res) => res.send("Happy New Year Homies!"));
+app.post('/', (req, res) => res.send("Happy New Year Homies!"));
 app.use('/auth', Auth);
 app.get('/host', uuid);
 app.use('/user', userApi);
