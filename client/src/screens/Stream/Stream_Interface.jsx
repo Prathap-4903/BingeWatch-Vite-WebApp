@@ -1,5 +1,7 @@
 import React from 'react'
 import "./Stream.css";
+import { Input } from "../../components/ui/input";
+import { PaperPlaneTilt } from "@phosphor-icons/react";
 
 const Stream_Interface = () => {
   return (
@@ -35,8 +37,12 @@ const Stream_Interface = () => {
           <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
         </div>
         <div className='chat-box w-[423px] h-[360px] flex justify-center items-end gap-[20px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] mt-[25px] mb-[7.5px] '>
-          <div className='text-box w-[310px] h-[45px] bg-[#292929] rounded-[20px] mb-[20px] '></div>
-          <div className='send-btn w-[45px] h-[45px] bg-[#292929] rounded-[14px] mb-[20px] '></div>
+          <div className='text-box w-[310px] h-[45px] bg-[#292929] rounded-[20px] mb-[20px] flex justify-center items-center '>
+            <Input type="email" placeholder="Message.." className="border-none rounded-[34px] h-[45px] text-white" />
+          </div>
+          <div className='send-btn w-[45px] h-[45px] bg-[#292929] rounded-[14px] mb-[20px] cursor-pointer flex justify-center items-center text-white'>
+            <PaperPlaneTilt size={20} />
+          </div>
         </div>
       </div>
     </div>

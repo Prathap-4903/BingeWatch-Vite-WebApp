@@ -31,7 +31,7 @@ auth.post("/sign-up", upload.single("picture"), async(req,res) => {
         return res.status(200).json({status: true, message: "User Record Saved!"});
     } else {
         const newUser = new UserModel({
-            name, username, email, password: hashedPassword, confirmPassword, picture: file.path
+            name, username, email, password: hashedPassword, confirmPassword, picture: req.file.path
         });
         await newUser.save();
         return res.status(200).json({status: true, message: "User Record Saved!"});
