@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import "./Stream.css";
 import { Input } from "../../components/ui/input";
 import { PaperPlaneTilt } from "@phosphor-icons/react";
@@ -50,4 +50,4 @@ const Stream_Interface = () => {
   )
 }
 
-export default Stream_Interface
+export default Stream_Interface;
