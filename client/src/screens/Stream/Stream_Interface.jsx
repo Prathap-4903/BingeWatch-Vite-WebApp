@@ -1,7 +1,8 @@
 import React from 'react';
 import "./Stream.css";
 import { Input } from "../../components/ui/input";
-import { PaperPlaneTilt } from "@phosphor-icons/react";
+import { PaperPlaneTilt, Camera } from "@phosphor-icons/react";
+import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons'
 
 const Stream_Interface = () => {
   return (
@@ -12,15 +13,25 @@ const Stream_Interface = () => {
         <div className='bottom-part flex w-[870px] h-[204px] gap-[10px] border-solid border-[1px] border-[#666] rounded-[34px] mb-[7.5px] '>
           <div className='bottom-left flex flex-col gap-[15px] w-[652.39px] h-[204px] justify-start items-center pl-[12px]  '>
             <div className='controls flex w-[489.04] h-[80px] mt-[25px] gap-[125.18px] '>
-              <div className='camera w-[65px] h-[65px] bg-[#292929] rounded-full border-solid border-[1px] border-[#666] '></div>
-              <div className='mic w-[65px] h-[65px] bg-[#292929] rounded-full border-solid border-[1px] border-[#666] '></div>
-              <div className='share-screen w-[65px] h-[65px] bg-[#292929] rounded-full border-solid border-[1px] border-[#666] '></div>
+              <div className='camera w-[65px] h-[65px] bg-[#292929] rounded-full border-solid border-[1px] border-[#666] flex justify-center items-center '>
+                <Camera size={32} className='text-white' />
+              </div>
+              <div className='mic w-[65px] h-[65px] bg-[#292929] rounded-full border-solid border-[1px] border-[#666] flex justify-center items-center text-white '>
+                <Mic />
+              </div>
+              <div className='share-screen w-[65px] h-[65px] bg-[#292929] rounded-full border-solid border-[1px] border-[#666] flex justify-center items-center text-white '>
+                <Cast />
+              </div>
             </div>
             <div className='reactions w-[552.39px] h-[60px] bg-[#292929] rounded-[25px] border-solid border-[1px] border-[#666] '></div>    
           </div>
           <div className='bottom-right w-[243.17px] h-[204px] flex flex-col gap-[16px] justify-center items-end pr-[12px] rounded-[25px] '>
-            <div className='poll w-[159.12px] h-[80px] bg-[#292929] rounded-[20px] border-solid border-[1px] border-[#666] '></div> 
-            <div className='file w-[159.12px] h-[80px] bg-[#292929] rounded-[20px] border-solid border-[1px] border-[#666] '></div> 
+            <div className='poll w-[159.12px] h-[80px] bg-[#292929] rounded-[20px] border-solid border-[1px] border-[#666] flex justify-center items-center text-white '>
+              <BarChart2 size={28} />
+            </div> 
+            <div className='file w-[159.12px] h-[80px] bg-[#292929] rounded-[20px] border-solid border-[1px] border-[#666] flex justify-center items-center text-white  '>
+              <Upload size={28} />
+            </div> 
           </div>
         </div>
       </div>

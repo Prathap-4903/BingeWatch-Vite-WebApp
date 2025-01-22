@@ -19,7 +19,7 @@ function App() {
         <Route path="/home" element={<Home_Page />} />
         <Route path="/host" element={<Host />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/stream" element={<Stream_Interface />} />
+        <Route path="/stream/:roomId" element={<Stream_Interface />} />
       </Routes>
       <Toaster/>
     </>
