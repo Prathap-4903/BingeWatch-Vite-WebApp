@@ -1,7 +1,7 @@
 import express from "express";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import UserModel from "../../modal/UserModel.js";
+import UserModel from "../../models/UserModel.js";
 import { upload } from '../../middlewares/multer/upload.js';
 import verifyUser from '../../middlewares/auth/verifyUser.js';
 
