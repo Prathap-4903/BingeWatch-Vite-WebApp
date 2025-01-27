@@ -1,12 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { Auth } from './routes/auth/auth.js';
 import { uuid } from './function/uuid.js';
 import { userApi } from './routes/user/user.js';
-import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { Server } from 'socket.io';
 import { createServer } from 'http';
@@ -25,6 +25,7 @@ const io = new Server(server, {
 app.use(express.json());
 app.use(cors({
     origin: [process.env.FRONTEND_URL],
+    methods: ['GET', 'POST'],
     credentials: true
 }));
 app.use(cookieParser());
@@ -49,9 +50,43 @@ mongoose.connect(process.env.MONGO_URL)
     console.log("Error Connecting MongoDB: ", err);
 })
 
+//Variables
+const rooms = new Map();
+const roomUsers = new Map();
+
 //Socket.io
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('Client Connected - ', socket.id);
+
+    socket.on('create-room', (id, username) => {
+      if (rooms.has(id)) {
+          socket.emit('create-room-response', false);
+      } else {
+          rooms.set(id, { host: username, participants: [] });
+          console.log(rooms);
+          socket.emit('create-room-response', true);
+          socket.join(id);
+          if(!roomUsers.has(id)) {
+              roomUsers.set(id, []);
+          }
+          roomUsers.get(id).push(username);
+          console.log(roomUsers);
+          console.log(`Room ${id} created by ${username}`);
+      }
+    });
+
+    socket.on('join-room', (id, username) => {
+      if(!rooms.has(id)) {
+          roomUsers.set(id, []);
+          socket.emit('join-room-response', false);
+      } else {
+          console.log(`${username} requested to join room ${id}`);
+          // Notify the host about the join request
+          io.to(id).emit('join-request', { username, socketId: socket.id });
+          socket.emit('join-room-pending'); // Inform the participant the request is sent
+      }
+    });
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
