@@ -4,15 +4,40 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { io } from 'socket.io-client';
+import socket from '@/components/UI_Elements/socket';
+import UseUserStore from '@/store/UserStore';
+
 
 const Join = () => {
+  const [id, setId] = useState();
+  const { username } = UseUserStore();
   const nav = useNavigate();
-  const socket = io('http://localhost:5000');
 
-  const handleJoinStream = () => {
-    nav('/stream');
-  }
+  //Functions
+  const handleJoinRoom = () => {
+    if(id) {
+      socket.emit('join-room', id, username);
+      // socket.on('join-room-response', (data) => {
+      //   if(data) {
+      //     nav(`/stream/${id}`);
+      //   } else {
+      //     alert('Room Not Found');
+      //   }
+      // })
+      socket.on('join-room-pending', () => {
+        alert('Request sent to the host. Waiting for approval...');
+      });
+
+      socket.on('join-room-approved', () => {
+          nav(`/stream/${id}`);
+      });
+    
+      socket.on('join-room-rejected', () => {
+          alert('Your join request was rejected by the host.');
+      });
+    }
+  };
+
   return (
     <>
       <div className='host-screen w-full h-screen bg-white flex justify-center items-center '>
@@ -24,11 +49,11 @@ const Join = () => {
             <CardContent className="font-geist-medium text-[18px] w-full ">
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label htmlFor="code">Enter Code </Label>
-                <Input type="text" id="code" placeholder="Enter the code" className="pl-10 placeholder:absolute placeholder:left-4 " />
+                <Input type="text" id="code" placeholder="Enter the code" onChange={(e) => setId(e.target.value)} className="pl-10 placeholder:absolute placeholder:left-4 " />
               </div>
             </CardContent>
             <CardFooter className="flex justify-center">
-              <Button onClick={handleJoinStream} className="w-[180px]">Enter The Stream</Button>
+              <Button onClick={handleJoinRoom} className="w-[180px]">Enter The Stream</Button>
             </CardFooter>
           </CardHeader>
         </Card>  

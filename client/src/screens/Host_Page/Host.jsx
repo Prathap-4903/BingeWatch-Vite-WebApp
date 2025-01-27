@@ -33,7 +33,7 @@ const Host = () => {
         }
       })
     } else {
-      console.log('Error', code, username);
+      console.log('Error', id, username);
     }
   }
 
@@ -50,7 +50,7 @@ const Host = () => {
             <CardTitle className="font-geist-bold text-[20px] ">Room ID</CardTitle>
             <CardDescription className="font-geist-semi text-[14px]" >Share this code with your homies!</CardDescription>
             <CardContent></CardContent>
-            <CardContent className="font-geist-medium text-[18px] w-full ">{code}</CardContent>
+            <CardContent className="font-geist-medium text-[18px] w-full ">{id}</CardContent>
             <CardFooter className="flex justify-center">
               <Button onClick={handleCreateRoom} className="w-[180px]">Start The Stream</Button>
             </CardFooter>
