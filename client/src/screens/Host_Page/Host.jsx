@@ -9,25 +9,25 @@ import { Button } from '@/components/ui/button';
 
 const Host = () => {
   const { username } = useUserStore();
-  const [code, setCode] = useState('');
+  const [id, setId] = useState('');
   const nav = useNavigate();
 
   //Functions
   const generateCode = async() => {
     try{
-      const code = await axios.get("http://localhost:5000/host", { withCredentials: true });
-      setCode(code.data);
+      const response = await axios.get("http://localhost:5000/host", { withCredentials: true });
+      setId(response.data);
     } catch(err){
       console.log("Error Generating Code : ", err);
     }
   };
 
   const handleCreateRoom = () => {
-    if(code, username) {
-      socket.emit('create-room', code, username);
+    if(id, username) {
+      socket.emit('create-room', id, username);
       socket.on('create-room-response', (data) => {
         if(data){
-          nav(`/stream/${code}`);
+          nav(`/stream/${id}`);
         } else {
           alert('Room Already Exists');
         }
