@@ -12,6 +12,7 @@ import History from './History';
 import Profile from './Profile';
 
 const Home_Page = () => { 
+  const { username, setUsername } = useUserStore();
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
@@ -20,6 +21,8 @@ const Home_Page = () => {
     .then(res => {
       if(res.data.status){
         console.log(res.data);
+        setUsername(res.data.user.username);
+        console.log("Hi! ", username);
       } else {
         navigate('/sign-in');
       }
