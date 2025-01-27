@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Home_Styles.css";
 import axios from 'axios';
+import useUserStore from '../../store/UserStore';
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";
 import NavBar from '../../components/NavBar/NavBar';
