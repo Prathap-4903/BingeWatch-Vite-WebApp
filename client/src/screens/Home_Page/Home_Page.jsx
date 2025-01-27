@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Home_Styles.css";
 import axios from 'axios';
-import useUserStore from '../../store/UserStore';
+import useUserStore from '@/store/UserStore';
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";
 import NavBar from '../../components/NavBar/NavBar';
@@ -21,8 +21,8 @@ const Home_Page = () => {
     .then(res => {
       if(res.data.status){
         console.log(res.data);
+        console.log("Username - ", res.data.user.username);
         setUsername(res.data.user.username);
-        console.log("Hi! ", username);
       } else {
         navigate('/sign-in');
       }
