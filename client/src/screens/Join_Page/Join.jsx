@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import socket from '@/components/UI_Elements/socket';
 import UseUserStore from '@/store/UserStore';
 
-
 const Join = () => {
   const [id, setId] = useState();
   const { username } = UseUserStore();

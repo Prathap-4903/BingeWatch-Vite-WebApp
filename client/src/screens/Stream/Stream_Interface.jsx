@@ -1,10 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import "./Stream.css";
 import { Input } from "../../components/ui/input";
 import { PaperPlaneTilt, Camera } from "@phosphor-icons/react";
 import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons'
 
 const Stream_Interface = () => {
+  const [usersInRoom, setUsersInRoom] = useState([]);
+  const [joinRequests, setJoinRequests] = useState([]); // Store join requests
+  const { username } = useUserStore();
+  const { roomId } = useParams();
+
+  useEffect(() => {
+    // socket.emit("get-users-in-room", roomId);
+    // console.log("Getting users in room", roomId);
+
+    // Listen for updated users in the room
+    socket.on("users-in-room", (users) => setUsersInRoom(users));
+
+    // Handle incoming join requests
+    socket.on("join-request", ({ username, socketId }) => {
+      console.log("Join request from", username);
+      setJoinRequests((prev) => [...prev, { username, socketId }]);
+    });
+
+    return () => {
+      socket.off("users-in-room");
+      socket.off("join-request");
+    };
+  }, [roomId]);
+
+  const handleApprove = (socketId, username) => {
+    socket.emit("approve-join", { id: roomId, socketId, username });
+    setJoinRequests((prev) => prev.filter((req) => req.socketId !== socketId)); // Remove request
+  };
+
+  const handleReject = (socketId) => {
+    socket.emit("reject-join", { socketId });
+    setJoinRequests((prev) => prev.filter((req) => req.socketId !== socketId)); // Remove request
+  };
+
   return (
     <>
     <div className='stream-screen w-full h-screen bg-[#1a1a1a] flex justify-center items-center gap-[10px] p-[6px] '>
