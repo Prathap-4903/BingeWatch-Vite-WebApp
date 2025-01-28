@@ -16,13 +16,14 @@ const Stream_Interface = () => {
   const { roomId } = useParams();
 
   useEffect(() => {
-    socket.on('host-of-room', (host) => {
-      setHostInRoom(host);
-      console.log(host);
-    });
+    socket.emit('get-host-name', roomId);
+    socket.on('host-name', (host) => setHostInRoom(host));
 
     // Listen for updated users in the room
-    socket.on("users-in-room", (users) => setUsersInRoom(users));
+    socket.on("users-in-room", (users) => {
+      console.log('Users in Room:', users);
+      setUsersInRoom(users);
+    });
 
     // Handle incoming join requests
     socket.on("join-request", ({ username, socketId }) => {
@@ -76,8 +77,9 @@ const Stream_Interface = () => {
           </div>
         </div>
       </div>
-      <div className='right-part w-[438px] h-[654px] flex flex-col items-center gap-[7px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
-        <div className='friends-box flex flex-wrap justify-center w-[403px] h-[269.45px] gap-[45px] rounded-[34px] mt-[20px] mb-[30px] '>
+      <div className='right-part w-[438px] h-[654px] flex flex-col items-center gap-[12px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
+        <div className='room-info w-full h-[55px] bg-violet-600 mt-3 rounded-3xl'></div>
+        <div className='friends-box bg-orange-300 flex flex-wrap justify-center w-[403px] h-auto gap-[45px] rounded-[34px] '>
           <Friends_List />
           <Friends_List />
           <Friends_List />
@@ -88,7 +90,7 @@ const Stream_Interface = () => {
           <Friends_List />
           <Friends_List />
         </div>
-        <div className='chat-box w-[423px] h-[360px] flex justify-center items-end gap-[20px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] mt-[25px] mb-[7.5px] '>
+        <div className='chat-box w-[423px] h-[360px] flex justify-center items-end gap-[20px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] mb-[7.5px] '>
           <div className='text-box w-[310px] h-[45px] bg-[#292929] rounded-[20px] mb-[20px] flex justify-center items-center '>
             <Input type="email" placeholder="Message.." className="border-none rounded-[34px] h-[45px] text-white" />
           </div>

@@ -66,7 +66,6 @@ io.on('connection', (socket) => {
           console.log(rooms);
           socket.emit('create-room-response', true);
           socket.join(id);
-          console.log("Update Host - ", rooms.get(id).host);
           io.to(id).emit('host-of-room', rooms.get(id).host); // Update host
           if(!roomUsers.has(id)) {
               roomUsers.set(id, []);
@@ -101,6 +100,11 @@ io.on('connection', (socket) => {
     
     socket.on('reject-join', ({ socketId }) => {
         io.to(socketId).emit('join-room-rejected'); // Notify participant
+    });
+
+    // Update Users in Stream
+    socket.on('get-host-name', (id) => {
+        io.to(id).emit('host-name', rooms.get(id).host);
     });
 
     socket.on('disconnect', () => {
