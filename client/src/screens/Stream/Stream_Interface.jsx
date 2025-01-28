@@ -78,8 +78,10 @@ const Stream_Interface = () => {
         </div>
       </div>
       <div className='right-part w-[438px] h-[654px] flex flex-col items-center gap-[12px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
-        <div className='room-info w-full h-[55px] bg-violet-600 mt-3 rounded-3xl'></div>
-        <div className='friends-box bg-orange-300 flex flex-wrap justify-center w-[403px] h-auto gap-[45px] rounded-[34px] '>
+        <div className='room-info w-full h-[55px] mt-3 rounded-3xl flex justify-center items-center'>
+          <h1 className='text-white'>HOST - {hostInRoom}</h1>
+        </div>
+        <div className='friends-box w-[403px] h-auto flex flex-wrap justify-center gap-[55px] rounded-[34px] '>
           <Friends_List />
           <Friends_List />
           <Friends_List />

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import socket from '@/components/UI_Elements/socket';
 import UseUserStore from '@/store/UserStore';
+import { toast, useToast } from "@/hooks/use-toast";
 
 const Join = () => {
   const [id, setId] = useState();
@@ -24,15 +25,28 @@ const Join = () => {
       //   }
       // })
       socket.on('join-room-pending', () => {
-        alert('Request sent to the host. Waiting for approval...');
+        toast({
+          title: "Request Sent To Host!",
+          description: "Waiting for approval..."
+        });
+        // alert('Request sent to the host. Waiting for approval...');
       });
 
       socket.on('join-room-approved', () => {
           nav(`/stream/${id}`);
+          toast({
+            title: "Request Approved By Host!",
+            description: "Enjoy The Stream..."
+          });
       });
     
       socket.on('join-room-rejected', () => {
-          alert('Your join request was rejected by the host.');
+        toast({
+          variant: "destructive",
+          title: "Request Rejected By Host!",
+          description: "You can try again later."
+        });
+          // alert('Your join request was rejected by the host.');
       });
     }
   };
