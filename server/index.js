@@ -56,7 +56,7 @@ const roomUsers = new Map();
 
 //Socket.io
 io.on('connection', (socket) => {
-    console.log('Client Connected - ', socket.id);
+    console.log('Client Connected -', socket.id);
 
     socket.on('create-room', (id, username) => {
       if (rooms.has(id)) {
@@ -66,6 +66,8 @@ io.on('connection', (socket) => {
           console.log(rooms);
           socket.emit('create-room-response', true);
           socket.join(id);
+          console.log("Update Host - ", rooms.get(id).host);
+          io.to(id).emit('host-of-room', rooms.get(id).host); // Update host
           if(!roomUsers.has(id)) {
               roomUsers.set(id, []);
           }
@@ -85,6 +87,20 @@ io.on('connection', (socket) => {
           io.to(id).emit('join-request', { username, socketId: socket.id });
           socket.emit('join-room-pending'); // Inform the participant the request is sent
       }
+    });
+
+    socket.on('approve-join', ({ id, socketId, username }) => {
+        if (rooms.has(id)) {
+            // Add the participant to the room
+            rooms.get(id).participants.push(username);
+            console.log(rooms);
+            io.to(socketId).emit('join-room-approved'); // Notify participant
+            io.to(id).emit('users-in-room', rooms.get(id).participants); // Update room users
+        }
+    });
+    
+    socket.on('reject-join', ({ socketId }) => {
+        io.to(socketId).emit('join-room-rejected'); // Notify participant
     });
 
     socket.on('disconnect', () => {

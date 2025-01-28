@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import socket from '@/components/UI_Elements/socket';
 import "./Stream.css";
 import { Input } from "../../components/ui/input";
 import { PaperPlaneTilt, Camera } from "@phosphor-icons/react";
-import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons'
+import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons';
+import Friends_List from '@/components/UI_Elements/Friends_List';
+import useUserStore from '@/store/UserStore';
 
 const Stream_Interface = () => {
+  const [hostInRoom, setHostInRoom] = useState([]); 
   const [usersInRoom, setUsersInRoom] = useState([]);
   const [joinRequests, setJoinRequests] = useState([]); // Store join requests
   const { username } = useUserStore();
   const { roomId } = useParams();
 
   useEffect(() => {
-    // socket.emit("get-users-in-room", roomId);
-    // console.log("Getting users in room", roomId);
+    socket.on('host-of-room', (host) => {
+      setHostInRoom(host);
+      console.log(host);
+    });
 
     // Listen for updated users in the room
     socket.on("users-in-room", (users) => setUsersInRoom(users));
@@ -71,16 +77,16 @@ const Stream_Interface = () => {
         </div>
       </div>
       <div className='right-part w-[438px] h-[654px] flex flex-col items-center gap-[7px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
-        <div className='friends-box flex flex-wrap justify-center w-[403px] h-[269.45px] gap-[50px] rounded-[34px] mt-[20px] mb-[30px] '>
-          <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
-          <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
-          <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
-          <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
-          <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
-          <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
-          <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
-          <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
-          <div className='friends w-[70px] h-[70px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '></div>
+        <div className='friends-box flex flex-wrap justify-center w-[403px] h-[269.45px] gap-[45px] rounded-[34px] mt-[20px] mb-[30px] '>
+          <Friends_List />
+          <Friends_List />
+          <Friends_List />
+          <Friends_List />
+          <Friends_List />
+          <Friends_List />
+          <Friends_List />
+          <Friends_List />
+          <Friends_List />
         </div>
         <div className='chat-box w-[423px] h-[360px] flex justify-center items-end gap-[20px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] mt-[25px] mb-[7.5px] '>
           <div className='text-box w-[310px] h-[45px] bg-[#292929] rounded-[20px] mb-[20px] flex justify-center items-center '>
@@ -97,3 +103,27 @@ const Stream_Interface = () => {
 }
 
 export default Stream_Interface;
+
+/*
+<h2 className='text-emerald-500'>HOST OF THE ROOM - {hostInRoom}</h2>
+        <h2 className='text-red-500'>Users in Room:</h2>
+        <ul className='text-white'>
+          {usersInRoom.map((user, index) => (
+            <li key={index}>{user}</li>
+          ))}
+        </ul>
+        {joinRequests.length > 0 && (
+        <div className='text-red-500'>
+          <h2>Join Requests</h2>
+          {joinRequests.map(({ username, socketId }) => (
+            <div key={socketId}>
+              <p>{username} wants to join</p>
+              <button onClick={() => handleApprove(socketId, username)}>
+                Approve
+              </button>
+              <button onClick={() => handleReject(socketId)}>Reject</button>
+            </div>
+          ))}
+        </div>
+        )}
+*/

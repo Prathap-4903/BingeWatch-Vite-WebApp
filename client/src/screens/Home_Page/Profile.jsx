@@ -28,7 +28,7 @@ const Profile = () => {
           setPicture(userData.picture);
         }
       } else {
-        navigate('sign-in');
+        navigate('/sign-in');
       }
     } catch(err) {
       console.log(err);
