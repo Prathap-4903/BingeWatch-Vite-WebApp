@@ -110,24 +110,24 @@ export default Stream_Interface;
 
 /*
 <h2 className='text-emerald-500'>HOST OF THE ROOM - {hostInRoom}</h2>
-        <h2 className='text-red-500'>Users in Room:</h2>
-        <ul className='text-white'>
-          {usersInRoom.map((user, index) => (
-            <li key={index}>{user}</li>
-          ))}
-        </ul>
-        {joinRequests.length > 0 && (
-        <div className='text-red-500'>
-          <h2>Join Requests</h2>
-          {joinRequests.map(({ username, socketId }) => (
-            <div key={socketId}>
-              <p>{username} wants to join</p>
-              <button onClick={() => handleApprove(socketId, username)}>
-                Approve
-              </button>
-              <button onClick={() => handleReject(socketId)}>Reject</button>
-            </div>
-          ))}
-        </div>
-        )}
+<h2 className='text-red-500'>Users in Room:</h2>
+<ul className='text-white'>
+  {usersInRoom.map((user, index) => (
+    <li key={index}>{user}</li>
+  ))}
+</ul>
+{joinRequests.length > 0 && (
+<div className='text-red-500'>
+  <h2>Join Requests</h2>
+  {joinRequests.map(({ username, socketId }) => (
+    <div key={socketId}>
+      <p>{username} wants to join</p>
+      <button onClick={() => handleApprove(socketId, username)}>
+        Approve
+      </button>
+      <button onClick={() => handleReject(socketId)}>Reject</button>
+    </div>
+  ))}
+</div>
+)}
 */
