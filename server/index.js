@@ -94,7 +94,9 @@ io.on('connection', (socket) => {
             rooms.get(id).participants.push(username);
             console.log(rooms);
             io.to(socketId).emit('join-room-approved'); // Notify participant
-            io.to(id).emit('users-in-room', rooms.get(id).participants); // Update room users
+            io.to(id).emit('users-in-room', rooms.get(id).participants);
+            io.to(socketId).emit('users-in-room', rooms.get(id).participants); // Update room users
+            io.to(socketId).emit('host-name', rooms.get(id).host); // Update host
         }
     });
     

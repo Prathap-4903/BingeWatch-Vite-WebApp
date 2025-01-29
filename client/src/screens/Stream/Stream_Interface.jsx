@@ -7,17 +7,19 @@ import { PaperPlaneTilt, Camera } from "@phosphor-icons/react";
 import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons';
 import Friends_List from '@/components/UI_Elements/Friends_List';
 import useUserStore from '@/store/UserStore';
+import useHostStore from '@/store/HostStore';
 
 const Stream_Interface = () => {
   const [hostInRoom, setHostInRoom] = useState([]); 
   const [usersInRoom, setUsersInRoom] = useState([]);
   const [joinRequests, setJoinRequests] = useState([]); // Store join requests
   const { username } = useUserStore();
+  const { hostname, setHostname } = useHostStore();
   const { roomId } = useParams();
 
   useEffect(() => {
     socket.emit('get-host-name', roomId);
-    socket.on('host-name', (host) => setHostInRoom(host));
+    socket.on('host-name', (host) => setHostname(host));
 
     // Listen for updated users in the room
     socket.on("users-in-room", (users) => {
@@ -32,10 +34,11 @@ const Stream_Interface = () => {
     });
 
     return () => {
+      socket.off("host-name");
       socket.off("users-in-room");
       socket.off("join-request");
     };
-  }, [roomId]);
+  }, [roomId, hostname]);
 
   const handleApprove = (socketId, username) => {
     socket.emit("approve-join", { id: roomId, socketId, username });
@@ -79,19 +82,29 @@ const Stream_Interface = () => {
       </div>
       <div className='right-part w-[438px] h-[654px] flex flex-col items-center gap-[12px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
         <div className='room-info w-full h-[55px] mt-3 rounded-3xl flex justify-center items-center'>
-          <h1 className='text-white'>HOST - {hostInRoom}</h1>
+          <h1 className='text-white'>HOST - {hostname}</h1>
         </div>
         <div className='friends-box w-[403px] h-auto flex flex-wrap justify-center gap-[55px] rounded-[34px] '>
-          <Friends_List />
-          <Friends_List />
-          <Friends_List />
-          <Friends_List />
-          <Friends_List />
-          <Friends_List />
-          <Friends_List />
-          <Friends_List />
-          <Friends_List />
+          {usersInRoom.map((user, index) => (
+            <div key={index}>
+              <Friends_List Username={user}/>
+            </div>
+          ))}
         </div>
+        {joinRequests.length > 0 && (
+        <div className='text-red-500'>
+          <h2>Join Requests</h2>
+          {joinRequests.map(({ username, socketId }) => (
+            <div key={socketId}>
+              <p>{username} wants to join</p>
+              <button onClick={() => handleApprove(socketId, username)}>
+                Approve
+              </button>
+              <button onClick={() => handleReject(socketId)}>Reject</button>
+            </div>
+          ))}
+        </div>
+        )}
         <div className='chat-box w-[423px] h-[360px] flex justify-center items-end gap-[20px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] mb-[7.5px] '>
           <div className='text-box w-[310px] h-[45px] bg-[#292929] rounded-[20px] mb-[20px] flex justify-center items-center '>
             <Input type="email" placeholder="Message.." className="border-none rounded-[34px] h-[45px] text-white" />

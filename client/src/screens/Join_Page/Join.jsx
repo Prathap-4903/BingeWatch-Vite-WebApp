@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import socket from '@/components/UI_Elements/socket';
 import UseUserStore from '@/store/UserStore';
-import { toast, useToast } from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 
 const Join = () => {
   const [id, setId] = useState();
