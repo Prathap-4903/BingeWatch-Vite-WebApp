@@ -1,7 +1,7 @@
+import "./Stream.css";
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import socket from '@/components/UI_Elements/socket';
-import "./Stream.css";
 import { Input } from "../../components/ui/input";
 import { PaperPlaneTilt, Camera } from "@phosphor-icons/react";
 import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons';
@@ -9,10 +9,9 @@ import Friends_List from '@/components/UI_Elements/Friends_List';
 import useUserStore from '@/store/UserStore';
 import useHostStore from '@/store/HostStore';
 
-const Stream_Interface = () => {
-  const [hostInRoom, setHostInRoom] = useState([]); 
+const Stream_Interface = () => { 
   const [usersInRoom, setUsersInRoom] = useState([]);
-  const [joinRequests, setJoinRequests] = useState([]); // Store join requests
+  const [joinRequests, setJoinRequests] = useState([]);
   const { username } = useUserStore();
   const { hostname, setHostname } = useHostStore();
   const { roomId } = useParams();
@@ -38,7 +37,7 @@ const Stream_Interface = () => {
       socket.off("users-in-room");
       socket.off("join-request");
     };
-  }, [roomId, hostname]);
+  }, [roomId, hostname, usersInRoom]);
 
   const handleApprove = (socketId, username) => {
     socket.emit("approve-join", { id: roomId, socketId, username });

@@ -82,7 +82,6 @@ io.on('connection', (socket) => {
           socket.emit('join-room-response', false);
       } else {
           console.log(`${username} requested to join room ${id}`);
-          // Notify the host about the join request
           io.to(id).emit('join-request', { username, socketId: socket.id });
           socket.emit('join-room-pending'); // Inform the participant the request is sent
       }
