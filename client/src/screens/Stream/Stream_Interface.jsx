@@ -6,11 +6,13 @@ import { Input } from "../../components/ui/input";
 import { PaperPlaneTilt, Camera } from "@phosphor-icons/react";
 import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons';
 import Friends_List from '@/components/UI_Elements/Friends_List';
+import Request_Alert from "@/components/UI_Elements/Request_Alert";
 import useUserStore from '@/store/UserStore';
 import useHostStore from '@/store/HostStore';
 
 const Stream_Interface = () => { 
   const [usersInRoom, setUsersInRoom] = useState([]);
+  const [joinAlert, setJoinAlert] = useState(false);
   const [joinRequests, setJoinRequests] = useState([]);
   const { username } = useUserStore();
   const { hostname, setHostname } = useHostStore();
@@ -29,6 +31,7 @@ const Stream_Interface = () => {
     // Handle incoming join requests
     socket.on("join-request", ({ username, socketId }) => {
       console.log("Join request from", username);
+      setJoinAlert(true);
       setJoinRequests((prev) => [...prev, { username, socketId }]);
     });
 
@@ -41,11 +44,13 @@ const Stream_Interface = () => {
 
   const handleApprove = (socketId, username) => {
     socket.emit("approve-join", { id: roomId, socketId, username });
+    setJoinAlert(false);
     setJoinRequests((prev) => prev.filter((req) => req.socketId !== socketId)); // Remove request
   };
 
   const handleReject = (socketId) => {
     socket.emit("reject-join", { socketId });
+    setJoinAlert(false);
     setJoinRequests((prev) => prev.filter((req) => req.socketId !== socketId)); // Remove request
   };
 
@@ -90,19 +95,8 @@ const Stream_Interface = () => {
             </div>
           ))}
         </div>
-        {joinRequests.length > 0 && (
-        <div className='text-red-500'>
-          <h2>Join Requests</h2>
-          {joinRequests.map(({ username, socketId }) => (
-            <div key={socketId}>
-              <p>{username} wants to join</p>
-              <button onClick={() => handleApprove(socketId, username)}>
-                Approve
-              </button>
-              <button onClick={() => handleReject(socketId)}>Reject</button>
-            </div>
-          ))}
-        </div>
+        {joinAlert && (
+          <Request_Alert joinRequests={joinRequests} handleApprove={handleApprove} handleReject={handleReject} />
         )}
         <div className='chat-box w-[423px] h-[360px] flex justify-center items-end gap-[20px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] mb-[7.5px] '>
           <div className='text-box w-[310px] h-[45px] bg-[#292929] rounded-[20px] mb-[20px] flex justify-center items-center '>
