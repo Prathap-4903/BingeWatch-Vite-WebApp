@@ -9,31 +9,32 @@ import { Button } from '@/components/ui/button';
 
 const Host = () => {
   const { username } = useUserStore();
-  const [id, setId] = useState('');
+  const [roomId, setRoomId] = useState('');
   const nav = useNavigate();
 
   //Functions
   const generateCode = async() => {
     try{
       const response = await axios.get("http://localhost:5000/host", { withCredentials: true });
-      setId(response.data);
+      setRoomId(response.data);
     } catch(err){
       console.log("Error Generating Code : ", err);
     }
   };
 
   const handleCreateRoom = () => {
-    if(id, username) {
-      socket.emit('create-room', id, username);
+    if(roomId, username) {
+      socket.emit('create-room', roomId, username);
       socket.on('create-room-response', (data) => {
         if(data){
-          nav(`/stream/${id}`);
+          // nav(`/stream/${id}`);
+          nav(`/stream/${roomId}`);
         } else {
           alert('Room Already Exists');
         }
       })
     } else {
-      console.log('Error', id, username);
+      console.log('Error', roomId, username);
     }
   }
 
@@ -50,7 +51,7 @@ const Host = () => {
             <CardTitle className="font-geist-bold text-[20px] ">Room ID</CardTitle>
             <CardDescription className="font-geist-semi text-[14px]" >Share this code with your homies!</CardDescription>
             <CardContent></CardContent>
-            <CardContent className="font-geist-medium text-[18px] w-full ">{id}</CardContent>
+            <CardContent className="font-geist-medium text-[18px] w-full ">{roomId}</CardContent>
             <CardFooter className="flex justify-center">
               <Button onClick={handleCreateRoom} className="w-[180px]">Start The Stream</Button>
             </CardFooter>

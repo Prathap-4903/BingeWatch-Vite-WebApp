@@ -58,21 +58,21 @@ const roomUsers = new Map();
 io.on('connection', (socket) => {
     console.log('Client Connected -', socket.id);
 
-    socket.on('create-room', (id, username) => {
-      if (rooms.has(id)) {
+    socket.on('create-room', (roomId, username) => {
+      if (rooms.has(roomId)) {
           socket.emit('create-room-response', false);
       } else {
-          rooms.set(id, { host: username, participants: [] });
+          rooms.set(roomId, { host: username, participants: [] });
           console.log(rooms);
           socket.emit('create-room-response', true);
-          socket.join(id);
-          io.to(id).emit('host-of-room', rooms.get(id).host); // Update host
-          if(!roomUsers.has(id)) {
-              roomUsers.set(id, []);
-          }
-          roomUsers.get(id).push(username);
-          console.log(roomUsers);
-          console.log(`Room ${id} created by ${username}`);
+          socket.join(roomId);
+          io.to(roomId).emit('host-of-room', rooms.get(roomId).host);
+        //   if(!roomUsers.has(id)) {
+        //       roomUsers.set(id, []);
+        //   }
+        //   roomUsers.get(id).push(username);
+        //   console.log(roomUsers);
+          console.log(`Room ${roomId} created by ${username}`);
       }
     });
 
