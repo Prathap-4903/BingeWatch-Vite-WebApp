@@ -66,7 +66,7 @@ io.on('connection', (socket) => {
           console.log(rooms);
           socket.emit('create-room-response', true);
           socket.join(roomId);
-          io.to(roomId).emit('host-of-room', rooms.get(roomId).host);
+        //   io.to(roomId).emit('host-of-room', rooms.get(roomId).host);
         //   if(!roomUsers.has(id)) {
         //       roomUsers.set(id, []);
         //   }
@@ -76,26 +76,26 @@ io.on('connection', (socket) => {
       }
     });
 
-    socket.on('join-room', (id, username) => {
-      if(!rooms.has(id)) {
-          roomUsers.set(id, []);
+    socket.on('join-room', (roomId, username) => {
+      if(!rooms.has(roomId)) {
           socket.emit('join-room-response', false);
       } else {
-          console.log(`${username} requested to join room ${id}`);
-          io.to(id).emit('join-request', { username, socketId: socket.id });
+          console.log(`${username} requested to join room ${roomId}`);
+          io.to(roomId).emit('join-request', { username, socketId: socket.id });
           socket.emit('join-room-pending'); // Inform the participant the request is sent
       }
     });
 
-    socket.on('approve-join', ({ id, socketId, username }) => {
-        if (rooms.has(id)) {
+    socket.on('approve-join', ({ roomId, socketId, username }) => {
+        if (rooms.has(roomId)) {
             // Add the participant to the room
-            rooms.get(id).participants.push(username);
+            rooms.get(roomId).participants.push(username);
             console.log(rooms);
+            socket.join(roomId);
             io.to(socketId).emit('join-room-approved'); // Notify participant
-            io.to(id).emit('users-in-room', rooms.get(id).participants);
-            io.to(socketId).emit('users-in-room', rooms.get(id).participants); // Update room users
-            io.to(socketId).emit('host-name', rooms.get(id).host); // Update host
+            io.to(roomId).emit('users-in-room', rooms.get(roomId).participants);
+            io.to(socketId).emit('users-in-room', rooms.get(roomId).participants); // Update room users
+            io.to(socketId).emit('host-name', rooms.get(roomId).host); // Update host
         }
     });
     
@@ -104,8 +104,8 @@ io.on('connection', (socket) => {
     });
 
     // Update Users in Stream
-    socket.on('get-host-name', (id) => {
-        io.to(id).emit('host-name', rooms.get(id).host);
+    socket.on('get-host-name', (roomId) => {
+        io.to(roomId).emit('host-name', rooms.get(roomId).host);
     });
 
     socket.on('disconnect', () => {

@@ -33,6 +33,7 @@ const Stream_Interface = () => {
       console.log("Join request from", username);
       setJoinAlert(true);
       setJoinRequests((prev) => [...prev, { username, socketId }]);
+      console.log("Join Requests -", joinRequests);
     });
 
     return () => {
@@ -43,7 +44,7 @@ const Stream_Interface = () => {
   }, [roomId, hostname, usersInRoom]);
 
   const handleApprove = (socketId, username) => {
-    socket.emit("approve-join", { id: roomId, socketId, username });
+    socket.emit("approve-join", { roomId, socketId, username });
     setJoinAlert(false);
     setJoinRequests((prev) => prev.filter((req) => req.socketId !== socketId)); // Remove request
   };

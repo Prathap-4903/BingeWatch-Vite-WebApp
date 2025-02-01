@@ -9,14 +9,14 @@ import { toast } from "@/hooks/use-toast";
 import UseUserStore from '@/store/UserStore';
 
 const Join = () => {
-  const [id, setId] = useState();
+  const [roomId, setRoomId] = useState();
   const { username } = UseUserStore();
   const nav = useNavigate();
 
   //Functions
   const handleJoinRoom = () => {
-    if(id) {
-      socket.emit('join-room', id, username);
+    if(roomId) {
+      socket.emit('join-room', roomId, username);
       socket.on('join-room-pending', () => {
         toast({
           title: "Request Sent To Host!",
@@ -25,7 +25,7 @@ const Join = () => {
       });
 
       socket.on('join-room-approved', () => {
-          nav(`/stream/${id}`);
+          nav(`/stream/${roomId}`);
           toast({
             title: "Request Approved By Host!",
             description: "Enjoy The Stream..."
@@ -53,7 +53,7 @@ const Join = () => {
             <CardContent className="font-geist-medium text-[18px] w-full ">
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label htmlFor="code">Enter Code </Label>
-                <Input type="text" id="code" placeholder="Enter the code" onChange={(e) => setId(e.target.value)} className="pl-10 placeholder:absolute placeholder:left-4 " />
+                <Input type="text" id="code" placeholder="Enter the code" onChange={(e) => setRoomId(e.target.value)} className="pl-10 placeholder:absolute placeholder:left-4 " />
               </div>
             </CardContent>
             <CardFooter className="flex justify-center">
