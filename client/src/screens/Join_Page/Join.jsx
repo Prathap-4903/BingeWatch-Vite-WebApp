@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import socket from '@/components/UI_Elements/socket';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
-import socket from '@/components/UI_Elements/socket';
-import UseUserStore from '@/store/UserStore';
 import { toast } from "@/hooks/use-toast";
+import UseUserStore from '@/store/UserStore';
 
 const Join = () => {
   const [id, setId] = useState();
@@ -17,19 +17,11 @@ const Join = () => {
   const handleJoinRoom = () => {
     if(id) {
       socket.emit('join-room', id, username);
-      // socket.on('join-room-response', (data) => {
-      //   if(data) {
-      //     nav(`/stream/${id}`);
-      //   } else {
-      //     alert('Room Not Found');
-      //   }
-      // })
       socket.on('join-room-pending', () => {
         toast({
           title: "Request Sent To Host!",
           description: "Waiting for approval..."
         });
-        // alert('Request sent to the host. Waiting for approval...');
       });
 
       socket.on('join-room-approved', () => {
@@ -46,7 +38,6 @@ const Join = () => {
           title: "Request Rejected By Host!",
           description: "You can try again later."
         });
-          // alert('Your join request was rejected by the host.');
       });
     }
   };
@@ -75,4 +66,4 @@ const Join = () => {
   )
 }
 
-export default Join
+export default Join;

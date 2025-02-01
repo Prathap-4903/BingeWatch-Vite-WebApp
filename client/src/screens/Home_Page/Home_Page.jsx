@@ -38,7 +38,7 @@ const Home_Page = () => {
             <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mr-0"/>
             <img src={LogoText} width="180" height="34.32" className="ml-0 mt-1"/>
           </div>
-          <div className="col2-nav flex items-center justify-end flex-auto ">
+          <div className="col2-nav h-[57px] flex items-center justify-end flex-auto ">
             <NavBar />
           </div>
           <div className="col3-profile flex items-center justify-center h-[71.11px] w-[275px] mr-8 ">
@@ -46,8 +46,8 @@ const Home_Page = () => {
           </div>
         </div>
         <div className="row2 flex flex-1 gap-2">
-          <div className="leftPart w-[240px] h-[308.44px] "></div>
-          <div className="headlines flex items-center justify-center flex-1 ">
+          <div className="leftPart w-[240px] h-[308.44px]"></div>
+          <div className="headlines -mt-4 flex items-center justify-center flex-1 ">
             <Headlines />
           </div>
           <div className="history flex w-[240px] h-[308.44px] justify-center items-baseline ">
@@ -56,7 +56,7 @@ const Home_Page = () => {
         </div>
         <div className="row3 flex flex-1 gap-2">
           <div className="leftPart w-[240px] "></div>
-          <div className="Buttons flex items-baseline justify-center flex-1 ">
+          <div className="Buttons flex items-baseline justify-center flex-1">
             <Buttons />
           </div>
           <div className="rightPart w-[240px] "></div>

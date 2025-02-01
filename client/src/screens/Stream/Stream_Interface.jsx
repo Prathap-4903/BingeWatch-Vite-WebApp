@@ -1,5 +1,5 @@
 import "./Stream.css";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import socket from '@/components/UI_Elements/socket';
 import { Input } from "../../components/ui/input";
