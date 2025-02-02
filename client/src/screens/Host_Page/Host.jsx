@@ -12,7 +12,7 @@ const Host = () => {
   const [roomId, setRoomId] = useState('');
   const nav = useNavigate();
 
-  //Functions
+  // Functions
   const generateCode = async() => {
     try{
       const response = await axios.get("http://localhost:5000/host", { withCredentials: true });
