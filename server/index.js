@@ -52,64 +52,64 @@ mongoose.connect(process.env.MONGO_URL)
 
 //Variables
 const rooms = new Map();
-const roomUsers = new Map();
+const users = new Map();
 
 //Socket.io
 io.on('connection', (socket) => {
     console.log('Client Connected -', socket.id);
 
+    socket.on('set-username', (username) => {
+        console.log(`${username} Connected With ID - ${socket.id}`);
+    });
+
     socket.on('create-room', (roomId, username) => {
       if (rooms.has(roomId)) {
-          socket.emit('create-room-response', false);
+        socket.emit('create-room-response', false);
       } else {
-          rooms.set(roomId, { host: username, participants: [] });
-          console.log(rooms);
-          socket.emit('create-room-response', true);
-          socket.join(roomId);
-        //   io.to(roomId).emit('host-of-room', rooms.get(roomId).host);
-        //   if(!roomUsers.has(id)) {
-        //       roomUsers.set(id, []);
-        //   }
-        //   roomUsers.get(id).push(username);
-        //   console.log(roomUsers);
-          console.log(`Room ${roomId} created by ${username}`);
+        rooms.set(roomId, { host: username, participants: [] });
+        console.log(rooms);
+        socket.emit('create-room-response', true);
+        socket.join(roomId);
+        console.log(`Room ${roomId} created by ${username}`);
       }
     });
 
     socket.on('join-room', (roomId, username) => {
       if(!rooms.has(roomId)) {
-          socket.emit('join-room-response', false);
+        socket.emit('join-room-response', false);
       } else {
-          console.log(`${username} requested to join room ${roomId}`);
-          io.to(roomId).emit('join-request', { username, socketId: socket.id });
-          socket.emit('join-room-pending'); // Inform the participant the request is sent
+        console.log(`${username} requested to join room ${roomId}`);
+        io.to(roomId).emit('join-request', { username, socketId: socket.id });
+        socket.emit('join-room-pending'); // Inform the participant the request is sent
       }
     });
 
     socket.on('approve-join', ({ roomId, socketId, username }) => {
         if (rooms.has(roomId)) {
-            // Add the participant to the room
-            rooms.get(roomId).participants.push(username);
-            console.log(rooms);
-            socket.join(roomId);
-            io.to(socketId).emit('join-room-approved'); // Notify participant
-            io.in(roomId).emit('users-in-room', rooms.get(roomId).participants);
-            // io.to(socketId).emit('users-in-room', rooms.get(roomId).participants); // Update room users
-            io.to(socketId).emit('host-name', rooms.get(roomId).host); // Update host
+          // Add the participant to the room
+          rooms.get(roomId).participants.push(username);
+          console.log(rooms);
+          // socket.join(roomId);
+          io.sockets.sockets.get(socketId).join(roomId);
+          console.log("Rooms -", io.sockets.adapter.rooms);
+          io.to(socketId).emit('join-room-approved'); // Notify participant
+          io.to(roomId).emit('users-in-room', rooms.get(roomId).participants);
+          io.to(socketId).emit('users-in-room', rooms.get(roomId).participants); // Update room users
+          io.to(socketId).emit('host-name', rooms.get(roomId).host); // Update host
         }
     });
     
     socket.on('reject-join', ({ socketId }) => {
-        io.to(socketId).emit('join-room-rejected'); // Notify participant
+      io.to(socketId).emit('join-room-rejected'); // Notify participant
     });
 
     // Update Users in Stream
     socket.on('get-host-name', (roomId) => {
-        io.to(roomId).emit('host-name', rooms.get(roomId).host);
+      io.to(roomId).emit('host-name', rooms.get(roomId).host);
     });
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+      console.log('user disconnected');
     });
 });
 
@@ -118,3 +118,13 @@ const port = process.env.PORT || 5000;
 server.listen(port, () => {
     console.log(`Server is Running on Port: ${port}`);
 });
+
+// create-room
+/*
+io.to(roomId).emit('host-of-room', rooms.get(roomId).host);
+if(!roomUsers.has(id)) {
+roomUsers.set(id, []);
+}
+roomUsers.get(id).push(username);
+console.log(roomUsers);
+*/

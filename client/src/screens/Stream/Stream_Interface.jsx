@@ -18,6 +18,7 @@ const Stream_Interface = () => {
   const { hostname, setHostname } = useHostStore();
   const { roomId } = useParams();
 
+  // UseEffects
   useEffect(() => {
     socket.emit('get-host-name', roomId);
     socket.on('host-name', (host) => setHostname(host));
@@ -43,6 +44,7 @@ const Stream_Interface = () => {
     };
   }, [roomId, hostname, usersInRoom]);
 
+  // Functions
   const handleApprove = (socketId, username) => {
     socket.emit("approve-join", { roomId, socketId, username });
     setJoinAlert(false);
@@ -63,13 +65,13 @@ const Stream_Interface = () => {
         <div className='bottom-part flex w-[870px] h-[204px] gap-[10px] border-solid border-[1px] border-[#666] rounded-[34px] mb-[7.5px] '>
           <div className='bottom-left flex flex-col gap-[15px] w-[652.39px] h-[204px] justify-start items-center pl-[12px]  '>
             <div className='controls flex w-[489.04] h-[80px] mt-[25px] gap-[125.18px] '>
-              <div className='camera w-[65px] h-[65px] bg-[#292929] rounded-full border-solid border-[1px] border-[#666] flex justify-center items-center '>
+              <div className='camera w-[65px] h-[65px] bg-[#292929] hover:bg-[#1f1f1f] rounded-full border-solid border-[1px] border-[#666] flex justify-center items-center cursor-pointer '>
                 <Camera size={32} className='text-white' />
               </div>
-              <div className='mic w-[65px] h-[65px] bg-[#292929] rounded-full border-solid border-[1px] border-[#666] flex justify-center items-center text-white '>
+              <div className='mic w-[65px] h-[65px] bg-[#292929] hover:bg-[#1f1f1f] rounded-full border-solid border-[1px] border-[#666] flex justify-center items-center text-white cursor-pointer '>
                 <Mic />
               </div>
-              <div className='share-screen w-[65px] h-[65px] bg-[#292929] rounded-full border-solid border-[1px] border-[#666] flex justify-center items-center text-white '>
+              <div className='share-screen w-[65px] h-[65px] bg-[#292929] hover:bg-[#1f1f1f] rounded-full border-solid border-[1px] border-[#666] flex justify-center items-center text-white cursor-pointer '>
                 <Cast />
               </div>
             </div>

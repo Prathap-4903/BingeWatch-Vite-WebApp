@@ -1,7 +1,8 @@
+import "./Home_Styles.css";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./Home_Styles.css";
 import axios from 'axios';
+import socket from '@/components/UI_Elements/socket';
 import useUserStore from '@/store/UserStore';
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";
@@ -23,6 +24,7 @@ const Home_Page = () => {
         console.log(res.data);
         console.log("Username - ", res.data.user.username);
         setUsername(res.data.user.username);
+        socket.emit('set-username', res.data.user.username);
       } else {
         navigate('/sign-in');
       }
