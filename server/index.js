@@ -20,7 +20,8 @@ const io = new Server(server, {
         origin: [process.env.FRONTEND_URL],
         methods: ['GET', 'POST'],
         credentials: true
-    }
+    },
+    timeout: 60000,
 });
 app.use(express.json());
 app.use(cors({
@@ -70,6 +71,7 @@ io.on('connection', (socket) => {
         console.log(rooms);
         socket.emit('create-room-response', true);
         socket.join(roomId);
+        users.set(socket.id, username);
         console.log(`Room ${roomId} created by ${username}`);
       }
     });
@@ -90,11 +92,14 @@ io.on('connection', (socket) => {
           rooms.get(roomId).participants.push(username);
           console.log(rooms);
           // socket.join(roomId);
+          users.set(socketId, username);
+          console.log("Users Map -", users);
           io.sockets.sockets.get(socketId).join(roomId);
           console.log("Rooms -", io.sockets.adapter.rooms);
           io.to(socketId).emit('join-room-approved'); // Notify participant
-          io.to(roomId).emit('users-in-room', rooms.get(roomId).participants);
-          io.to(socketId).emit('users-in-room', rooms.get(roomId).participants); // Update room users
+          // io.to(roomId).emit('users-in-room', rooms.get(roomId).participants);
+          io.to(roomId).emit('users-in-room', Array.from(rooms.get(roomId).participants));
+          // io.to(socketId).emit('users-in-room', rooms.get(roomId).participants); // Update room users
           io.to(socketId).emit('host-name', rooms.get(roomId).host); // Update host
         }
     });
@@ -109,7 +114,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-      console.log('user disconnected');
+      console.log('Client Disconnected -', socket.id);
     });
 });
 
