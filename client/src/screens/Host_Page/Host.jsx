@@ -27,7 +27,6 @@ const Host = () => {
       socket.emit('create-room', roomId, username);
       socket.on('create-room-response', (data) => {
         if(data){
-          // nav(`/stream/${id}`);
           nav(`/stream/${roomId}`);
         } else {
           alert('Room Already Exists');
@@ -40,7 +39,6 @@ const Host = () => {
 
   useEffect(() => {
     generateCode();
-    console.log("Hi Host -", username);
   }, [])
 
   return (

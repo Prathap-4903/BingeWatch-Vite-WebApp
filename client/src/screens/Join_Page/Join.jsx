@@ -50,7 +50,12 @@ const Join = () => {
     console.log("Button Clicked!");
     if(roomId) {
       socket.emit('join-room', roomId, username);
-    }
+      socket.on('join-room-response', (data) => {
+        if(!data) {
+          alert('No Room Found');
+        }
+      });
+    };
   };
 
   return (

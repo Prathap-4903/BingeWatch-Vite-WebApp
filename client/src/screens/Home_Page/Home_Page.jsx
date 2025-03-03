@@ -24,7 +24,7 @@ const Home_Page = () => {
         console.log(res.data);
         console.log("Username - ", res.data.user.username);
         setUsername(res.data.user.username);
-        socket.emit('set-username', res.data.user.username);
+        socket.emit('new-user', res.data.user.username);
       } else {
         navigate('/sign-in');
       }
