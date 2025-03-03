@@ -1,3 +1,4 @@
+// Packages
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -17,17 +18,17 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: [process.env.FRONTEND_URL],
-        methods: ['GET', 'POST'],
-        credentials: true
+      origin: [process.env.FRONTEND_URL],
+      methods: ['GET', 'POST'],
+      credentials: true
     },
     timeout: 60000,
 });
 app.use(express.json());
 app.use(cors({
-    origin: [process.env.FRONTEND_URL],
-    methods: ['GET', 'POST'],
-    credentials: true
+  origin: [process.env.FRONTEND_URL],
+  methods: ['GET', 'POST'],
+  credentials: true
 }));
 app.use(cookieParser());
 
@@ -115,21 +116,21 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
       console.log('Client Disconnected -', socket.id);
+
+      socket.rooms.forEach(room => socket.leave(room));
+
+      // Remove user from rooms
+      rooms.forEach((room, roomId) => {
+        if (room.participants.includes(users.get(socket.id))) {
+          room.participants = room.participants.filter((participant) => participant !== users.get(socket.id));
+          io.to(roomId).emit('users-in-room', room.participants);
+        }
+      });
     });
 });
 
-//Backend Server
+// Server Configuration
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
     console.log(`Server is Running on Port: ${port}`);
 });
-
-// create-room
-/*
-io.to(roomId).emit('host-of-room', rooms.get(roomId).host);
-if(!roomUsers.has(id)) {
-roomUsers.set(id, []);
-}
-roomUsers.get(id).push(username);
-console.log(roomUsers);
-*/
