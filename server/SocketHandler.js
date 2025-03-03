@@ -6,6 +6,7 @@ const SocketHandler = (io) => {
   io.on('connection', (socket) => {
     console.log('Client Connected -', socket.id);
 
+    // New User Socket
     socket.on('new-user', (username) => {
       console.log(`${username} Connected With ID - ${socket.id}`);
       users.set(socket.id, username);
@@ -27,40 +28,39 @@ const SocketHandler = (io) => {
 
     // Join Room
     socket.on('join-room', (roomId, username) => {
+      console.log("Checking For Room -", rooms);
       if(!rooms.has(roomId)) {
         socket.emit('join-room-response', false);
       } else {
         console.log(`${username} requested to join room ${roomId}`);
-        // const hostSocketId = Array.from(io.sockets.adapter.rooms.get(roomId)).find((id) => users.get(id) === rooms.get(roomId).host);
         const hostSocketId = rooms.get(roomId).hostSocketId;
         io.to(hostSocketId).emit('join-request', { username, socketId: socket.id });
         socket.emit('join-room-pending');
       }
     });
 
+    // Accept Join Request
     socket.on('approve-join', ({ roomId, socketId, username }) => {
-        if (rooms.has(roomId)) {
-          // Add the participant to the room
-          rooms.get(roomId).participants.push(username);
-          console.log(rooms);
-          // socket.join(roomId);
-          users.set(socketId, username);
-          console.log("Users Map -", users);
-          io.sockets.sockets.get(socketId).join(roomId);
-          console.log("Rooms -", io.sockets.adapter.rooms);
-          io.to(socketId).emit('join-room-approved'); // Notify participant
-          // io.to(roomId).emit('users-in-room', rooms.get(roomId).participants);
-          io.to(roomId).emit('users-in-room', Array.from(rooms.get(roomId).participants));
-          // io.to(socketId).emit('users-in-room', rooms.get(roomId).participants); // Update room users
-          io.to(socketId).emit('host-name', rooms.get(roomId).host); // Update host
-        }
+      if (rooms.has(roomId)) {
+        rooms.get(roomId).participants.push(username);
+        console.log(rooms);
+        // socket.join(roomId);
+        // users.set(socketId, username);
+        console.log("Users Map -", users);
+        io.sockets.sockets.get(socketId).join(roomId);
+        console.log("Rooms -", io.sockets.adapter.rooms);
+        io.to(socketId).emit('join-room-approved');
+        io.to(roomId).emit('users-in-room', Array.from(rooms.get(roomId).participants));
+        io.to(socketId).emit('host-name', rooms.get(roomId).host);
+      }
     });
     
+    // Reject Join Request
     socket.on('reject-join', ({ socketId }) => {
-      io.to(socketId).emit('join-room-rejected'); // Notify participant
+      io.to(socketId).emit('join-room-rejected');
     });
 
-    // Update Users in Stream
+    // Update Host Name in Stream
     socket.on('get-host-name', (roomId) => {
       io.to(roomId).emit('host-name', rooms.get(roomId).host);
     });
@@ -68,6 +68,7 @@ const SocketHandler = (io) => {
     socket.on('disconnect', () => {
       console.log('Client Disconnected -', socket.id);
 
+      // users.delete(socket.id);
       socket.rooms.forEach(room => socket.leave(room));
 
       // Remove user from rooms
