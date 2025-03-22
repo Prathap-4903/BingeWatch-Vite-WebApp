@@ -2,7 +2,7 @@ import "./Host.css";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import socket from '@/components/UI_Elements/socket';
+import socket from '@/components/functions/socket';
 import useUserStore from "@/store/UserStore";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';

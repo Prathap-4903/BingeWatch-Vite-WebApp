@@ -2,7 +2,7 @@ import "./Home_Styles.css";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import socket from '@/components/UI_Elements/socket';
+import socket from '@/components/functions/socket';
 import useUserStore from '@/store/UserStore';
 import LogoMonkey from "../../assets/icons/monkey-icon-b.png";
 import LogoText from "../../assets/icons/BingeWatch Text Black.png";

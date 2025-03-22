@@ -1,7 +1,7 @@
 import "./Stream.css";
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import socket from '@/components/UI_Elements/socket';
+import socket from '@/components/functions/socket';
 import { Input } from "../../components/ui/input";
 import { PaperPlaneTilt, Camera } from "@phosphor-icons/react";
 import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons';
