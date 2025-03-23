@@ -20,7 +20,7 @@ const Profile = () => {
       if(response.data.status){
         //console.log(response.data.user.id);
 
-        const userResponse = await axios.get(`http://localhost:5000/user/${response.data.user.id}`, { withCredentials: true });
+        const userResponse = await axios.get(`http://localhost:5000/user/id/${response.data.user.id}`, { withCredentials: true });
         if(userResponse.data.status){
           const userData = userResponse.data.data;
           console.log(userData);
