@@ -29,6 +29,7 @@ const SocketHandler = (io) => {
     // Join Room
     socket.on('join-room', (roomId, username) => {
       console.log("Checking For Room -", rooms);
+      console.log("Room ID -", roomId);
       if(!rooms.has(roomId)) {
         socket.emit('join-room-response', false);
       } else {
@@ -65,6 +66,12 @@ const SocketHandler = (io) => {
       io.to(roomId).emit('host-name', rooms.get(roomId).host);
     });
 
+    // Chat Message
+    socket.on('chat-message', ({ roomId, message }) => {
+      io.to(roomId).emit('chat-message', { sender: socket.id, username: users.get(socket.id), message });
+    });
+
+    // Socket Disconnect
     socket.on('disconnect', () => {
       console.log('Client Disconnected -', socket.id);
 
