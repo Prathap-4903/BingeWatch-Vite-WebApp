@@ -3,8 +3,8 @@ import React from 'react';
 const Request_Alert = ({ joinRequests, handleApprove, handleReject }) => {
   return (
     <>
-      <div className='req-screen w-full h-screen bg-transparent flex justify-end items-end isolate z-10 '>
-        <div className='req-container w-96 h-auto bg-white m-10 flex flex-col px-4 py-4 gap-4 border border-solid border-[#c9c9c9] rounded-xl '>
+      <div className='req-screen w-full h-screen bg-black/10 backdrop-blur flex justify-center items-center absolute z-10 '>
+        <div className='req-container w-96 h-auto bg-white m-10 flex flex-col px-4 py-4 gap-4 border border-solid border-[#c9c9c9] rounded-xl shadow-black shadow '>
           <div>
             <h1 className='text-[23px] font-bold'>Join Requests</h1>
           </div>
