@@ -2,11 +2,11 @@ import "./Stream.css";
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import socket from '@/components/functions/socket';
-import { Input } from "../../components/ui/input";
-import { PaperPlaneTilt, Camera } from "@phosphor-icons/react";
-import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons';
+import { Camera } from "@phosphor-icons/react";
+import { Mic, Cast, BarChart2, Upload, UserPlus } from '@geist-ui/icons';
 import Friends_List from '@/components/Stream_Elements/Friends_List';
 import Request_Alert from "@/components/UI_Elements/Request_Alert";
+import Chat_Box from "@/components/Stream_Elements/Chat_Box";
 import useUserStore from '@/store/UserStore';
 import useHostStore from '@/store/HostStore';
 
@@ -89,27 +89,24 @@ const Stream_Interface = () => {
       </div>
       <div className='right-part w-[438px] h-[654px] flex flex-col items-center gap-[12px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
         <div className='room-info w-full h-[55px] mt-3 rounded-3xl flex justify-center items-center'>
-          <h1 className='text-white'>HOST - {hostname}</h1>
+          <h1 className='text-neutral-400 '>HOST - {hostname}</h1>
         </div>
-        <div className='friends-box w-[403px] h-auto flex flex-wrap justify-center gap-[55px] rounded-[34px] '>
+        <div className='friends-box flex flex-wrap justify-center items-center w-[403px] h-[580px] gap-4'>
           {usersInRoom.map((user, index) => (
-            <div key={index}>
-              <Friends_List Username={user}/>
-            </div>
+            <Friends_List key={index} Username={user} />
           ))}
-        </div>
-        {joinAlert && (
-          <Request_Alert joinRequests={joinRequests} handleApprove={handleApprove} handleReject={handleReject} />
-        )}
-        <div className='chat-box w-[423px] h-[360px] flex justify-center items-end gap-[20px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] mb-[7.5px] '>
-          <div className='text-box w-[310px] h-[45px] bg-[#292929] rounded-[20px] mb-[20px] flex justify-center items-center '>
-            <Input type="email" placeholder="Message.." className="border-none rounded-[34px] h-[45px] text-white" />
-          </div>
-          <div className='send-btn w-[45px] h-[45px] bg-[#292929] rounded-[14px] mb-[20px] cursor-pointer flex justify-center items-center text-white'>
-            <PaperPlaneTilt size={20} />
+          <div className='friends_container flex flex-col justify-center items-center w-[70px] h-[75px] mx-4 rounded-lg p-1 cursor-pointer'>
+            <div className='w-[45px] h-[50px] flex justify-center items-center text-white bg-[#292929] border border-[#666] rounded-full'>
+              <UserPlus size={24} className="ml-1" />
+            </div>
+            <p className='text-white text-[12px] text-center font-geist-medium mt-1'>Invite</p>
           </div>
         </div>
+        <Chat_Box />
       </div>
+      {joinAlert && (
+        <Request_Alert joinRequests={joinRequests} handleApprove={handleApprove} handleReject={handleReject} />
+      )}
     </div>
     </>
   )
@@ -139,4 +136,14 @@ export default Stream_Interface;
   ))}
 </div>
 )}
+*/
+
+/*
+<div className='friends-box flex justify-center items-center w-[403px] h-[580px] '>
+  {usersInRoom.map((user, index) => (
+    <div key={index} className='w-full h-full flex justify-center items-center '>
+      <Friends_List Username={user}/>
+    </div>
+  ))}
+</div>
 */
