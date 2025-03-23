@@ -5,7 +5,7 @@ import socket from '@/components/functions/socket';
 import { Input } from "../../components/ui/input";
 import { PaperPlaneTilt, Camera } from "@phosphor-icons/react";
 import { Mic, Cast, BarChart2, Upload } from '@geist-ui/icons';
-import Friends_List from '@/components/UI_Elements/Friends_List';
+import Friends_List from '@/components/Stream_Elements/Friends_List';
 import Request_Alert from "@/components/UI_Elements/Request_Alert";
 import useUserStore from '@/store/UserStore';
 import useHostStore from '@/store/HostStore';
