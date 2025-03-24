@@ -79,10 +79,10 @@ const Stream_Interface = () => {
             <Reaction_Tab />
           </div>
           <div className='bottom-right w-[243.17px] h-[204px] flex flex-col gap-[16px] justify-center items-end pr-[12px] rounded-[25px] '>
-            <div className='poll w-[159.12px] h-[80px] bg-[#292929] hover:bg-[#1f1f1f] rounded-[20px] border-solid border-[1px] border-[#666] flex justify-center items-center text-white '>
+            <div className='poll w-[159.12px] h-[80px] bg-[#292929] hover:bg-[#1f1f1f] rounded-[20px] border-solid border-[1px] border-[#666] flex justify-center items-center text-white cursor '>
               <BarChart2 size={28} />
             </div> 
-            <div className='file w-[159.12px] h-[80px] bg-[#292929] hover:bg-[#1f1f1f] rounded-[20px] border-solid border-[1px] border-[#666] flex justify-center items-center text-white  '>
+            <div className='file w-[159.12px] h-[80px] bg-[#292929] hover:bg-[#1f1f1f] rounded-[20px] border-solid border-[1px] border-[#666] flex justify-center items-center text-white cursor  '>
               <Upload size={28} />
             </div> 
           </div>
