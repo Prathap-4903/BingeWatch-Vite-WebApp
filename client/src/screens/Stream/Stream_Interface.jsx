@@ -6,6 +6,7 @@ import { Camera } from "@phosphor-icons/react";
 import { Mic, Cast, BarChart2, Upload, UserPlus } from '@geist-ui/icons';
 import Friends_List from '@/components/Stream_Elements/Friends_List';
 import Request_Alert from "@/components/UI_Elements/Request_Alert";
+import Reaction_Tab from "@/components/Stream_Elements/Reaction_Tab";
 import Chat_Box from "@/components/Stream_Elements/Chat_Box";
 import useUserStore from '@/store/UserStore';
 import useHostStore from '@/store/HostStore';
@@ -75,7 +76,7 @@ const Stream_Interface = () => {
                 <Cast />
               </div>
             </div>
-            <div className='reactions w-[552.39px] h-[60px] bg-[#292929] rounded-[25px] border-solid border-[1px] border-[#666] '></div>    
+            <Reaction_Tab />
           </div>
           <div className='bottom-right w-[243.17px] h-[204px] flex flex-col gap-[16px] justify-center items-end pr-[12px] rounded-[25px] '>
             <div className='poll w-[159.12px] h-[80px] bg-[#292929] rounded-[20px] border-solid border-[1px] border-[#666] flex justify-center items-center text-white '>
