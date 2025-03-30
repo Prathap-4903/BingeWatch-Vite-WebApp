@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Signup_Styles.css";
-import LogoMonkey from "../../../assets/icons/monkey-icon-b.png";
-import LogoText from "../../../assets/icons/BingeWatch Text Black.png";
-import LogImage from "../../../assets/illustration/SignUp_Illustration.jpg";
-import Input from "../../../components/UI_Elements/Input_Field";
+import LogoMonkey from "@/assets/icons/monkey-icon-b.png";
+import LogoText from "@/assets/icons/BingeWatch Text Black.png";
+import LogImage from "@/assets/illustration/SignUp_Illustration.jpg";
+import Input from "@/components/UI_Elements/Input_Field";
 import { Eye, EyeClosed } from "@phosphor-icons/react";
-import GoogleLogo from "../../../assets/icons/logo-google.svg";
+import GoogleLogo from "@/assets/icons/logo-google.svg";
 import { useToast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
 
@@ -64,28 +64,28 @@ const Sign_up = () => {
 
   return (
     <>
-      <div className="logo-container flex cursor-pointer m-2">
+      <div className="logo_container flex cursor-pointer m-2">
         <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mt-1 ml-2" />
         <img src={LogoText} width="180" height="34.32" className="mt-2" />
       </div>
 
       <form action="" onSubmit={handleSubmit} method="post" encType="multipart/form-data">
-        <div className="login-screen flex justify-center items-center h-screen w-full bg-white">
-        <Card className="w-[980px] h-[520px] flex justify-center items-center  ">
-        <img src={LogImage} alt="" className="w-[500px] h-[375px]  rounded-xl " />
-          <div className="login-container flex flex-col max-h-[451px] bg-white border-r-[5px] border-b-[5px] pt-4 px-4 pb-4 border-black rounded-3xl border-[2.5px] space-y-2 mx-10 min-w-[340px] w-[500px]">
-          <h1 className="font-geist-bold text-2xl">Signup</h1>
+        <div className="login_screen flex justify-center items-center h-screen w-full bg-white">
+        <Card className="border-none shadow-none mb-28 md:mb-20 md:border-solid md:shadow-lg md:w-[980px] md:h-[520px] md:flex justify-center items-center  ">
+        <img src={LogImage} alt="" className="hidden md:block w-[500px] h-[375px]  rounded-xl " />
+          <div className="login_container flex flex-col max-h-[451px] bg-white border-r-[5px] border-b-[5px] pt-4 px-4 pb-4 border-black rounded-3xl border-[2.5px] space-y-2 mx-10 min-w-[310px] max-w-[470px] md:min-w-[340px] md:w-[500px]">
+          <h1 className="font-geist-bold text-2xl">Sign Up</h1>
           <p className="font-geist-medium font-[375]">Grab Your Popcorn and Join The Party!</p>
-          <div className="input-body flex flex-wrap space-y-3 mb-3 justify-center items-center w-full flex-grow overflow-y-scroll hide-scrollbar">
+          <div className="input_body flex flex-wrap space-y-3 mb-3 justify-center items-center w-full h-44 md:h-44 flex-grow overflow-y-scroll hide-scrollbar">
             <div className="flex flex-wrap space-y-3 w-full mb-2">
-              <div className="input-container space-y-3 w-full">
+              <div className="input_container space-y-3 w-full">
                 <Input IdName={"name"} InputLabel={"Enter Name : "} InputName={"Name"} changeEvent={(e) => setName(e.target.value)} />
                 <Input IdName={"username"} InputLabel={"Enter Username : "} InputName={"Username"} changeEvent={(e) => setUsername(e.target.value)} />
                 <Input IdName={"email"} InputLabel={"Enter Email : "} InputName={"Email"} InputType={"email"} changeEvent={(e) => setEmail(e.target.value)} />
               <div className="w-full space-y-1">
                 <label htmlFor="password" className="font-geist-semi">Enter Password : </label>
                 <div className="relative w-full">
-                  <input required type={visible ? "text" : "password"} id="password" className="block w-full font-geist-medium font-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" onChange={(e) => setPassword(e.target.value)} />
+                  <input required type={visible ? "text" : "password"} id="password" className="block w-full font-geist-medium font-medium px-2.5 pb-2.5 pt-4 text-[17px] md:text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" onChange={(e) => setPassword(e.target.value)} />
                   <label htmlFor="password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
                   <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer">
                     <div onClick={() => setVisible(!visible)} className="flex items-end justify-end justify-items-end">
@@ -97,7 +97,7 @@ const Sign_up = () => {
               <div className="w-full space-y-1">
                 <label htmlFor="confirm_password" className="font-geist-semi">Confirm Password : </label>
                 <div className="relative w-full">
-                  <input required type={conVisible ? "text" : "password"} id="confirm_password" className="block w-full font-geist-medium font-medium px-2.5 pb-2.5 pt-4 text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" onChange={(e) => setConfirmPassword(e.target.value)} />
+                  <input required type={conVisible ? "text" : "password"} id="confirm_password" className="block w-full font-geist-medium font-medium px-2.5 pb-2.5 pt-4 text-[17px] md:text-[20px] text-black bg-transparent rounded-lg border-2 focus:border-r-4 focus:border-b-4 border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder="" onChange={(e) => setConfirmPassword(e.target.value)} />
                   <label htmlFor="confirm_password" className="absolute font-geist-semi text-sm text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Confirm Password</label>
                   <div className="absolute inset-y-0 right-5 flex items-center pl-3 cursor-pointer">
                     <div onClick={() => setConVisible(!conVisible)} className="flex items-end justify-end justify-items-end">
@@ -124,8 +124,8 @@ const Sign_up = () => {
             </div>
           </div>
           </div>
-          <div className="button-container flex flex-col flex-wrap space-y-3 justify-center w-full">
-            <button onClick={moveLogin} className="font-geist-medium font-thin underline text-[13px] bg-transparent hover:scale-[1.025] ease-in-out">Already have an account? Click Here to Sign In!</button>
+          <div className="button_container flex flex-col flex-wrap space-y-3 justify-center w-full">
+            <button onClick={moveLogin} className="font-geist-medium font-thin underline text-[12px] md:text-[14px] bg-transparent hover:scale-[1.025] ease-in-out">Already have an account? Click Here to Sign In!</button>
             <button type="submit" className="font-geist-bold text-white bg-black border-2 border-black py-1 rounded-xl hover:bg-white hover:text-black hover:scale-100 hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">Sign Up</button>
             <button className="flex justify-center gap-2 font-geist-semi border-2 font-medium border-black py-1 rounded-xl bg-transparent hover:border-r-4 hover:border-b-4 transition-all ease-in-out duration-100">
               <img src={GoogleLogo} alt="" className="h-5 w-5 mt-[1.7px]" />
