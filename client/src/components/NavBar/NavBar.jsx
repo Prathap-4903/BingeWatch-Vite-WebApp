@@ -15,23 +15,23 @@ const NavBar = () => {
   }
 
   const handleVerify = async () => {
-      try{
-        const response = await axios.get('http://localhost:5000/auth/verify', { withCredentials: true });
-        if(response.data.status){
-          //console.log(response.data.user.id);
-  
-          const userResponse = await axios.get(`http://localhost:5000/user/id/${response.data.user.id}`, { withCredentials: true });
-          if(userResponse.data.status){
-            const userData = userResponse.data.data;
-            console.log(userData);
-            setPicture(userData.picture);
-          }
-        } else {
-          console.log("User not verified");
+    try{
+      const response = await axios.get('http://localhost:5000/auth/verify', { withCredentials: true });
+      if(response.data.status){
+        //console.log(response.data.user.id);
+
+        const userResponse = await axios.get(`http://localhost:5000/user/id/${response.data.user.id}`, { withCredentials: true });
+        if(userResponse.data.status){
+          const userData = userResponse.data.data;
+          // console.log(userData);
+          setPicture(userData.picture);
         }
-      } catch(err) {
-        console.log(err);
+      } else {
+        console.log("User not verified");
       }
+    } catch(err) {
+      console.log(err);
+    }
     }
 
   useEffect(() => {
