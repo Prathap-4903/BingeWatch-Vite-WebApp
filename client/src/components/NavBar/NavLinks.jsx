@@ -1,20 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 const NavLinks = () => {
-
-    const links = [{name: "FRIENDS"}, {name: "GROUPS"}];
+  const links = [{name: "FRIENDS"}, {name: "GROUPS"}];
 
   return (
     <>
-        <div className='flex items-center gap-16 mr-6 font-geist-bold font-bold'>
-            <a href="#" className='hover:underline'>FRIENDS</a>
-            <a href="#" className='hover:underline'>GROUPS</a>
-            <a href="#" className='hover:underline'>CONTACT</a>
-            <a href="#" className='hover:underline'>ABOUT US</a>
-
-        </div>
+      <div className='flex items-center gap-16 mr-6 font-geist-bold font-bold'>
+        <a href="#" className='hover:underline'>FRIENDS</a>
+        <a href="#" className='hover:underline'>GROUPS</a>
+        <a href="#" className='hover:underline'>CONTACT</a>
+        <a href="#" className='hover:underline'>ABOUT US</a>
+      </div>
     </>
   )
 }
 
-export default NavLinks
+export default NavLinks;
