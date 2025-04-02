@@ -12,7 +12,7 @@ const Profile = () => {
 
   useEffect(() => {
     handleVerify();
-  }, [])
+  }, []);
 
   const handleVerify = async () => {
     try{
