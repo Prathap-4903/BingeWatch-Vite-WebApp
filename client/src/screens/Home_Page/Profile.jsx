@@ -23,7 +23,7 @@ const Profile = () => {
         const userResponse = await axios.get(`http://localhost:5000/user/id/${response.data.user.id}`, { withCredentials: true });
         if(userResponse.data.status){
           const userData = userResponse.data.data;
-          console.log(userData);
+          // console.log(userData);
           setUsername(userData.username);
           setPicture(userData.picture);
         }
