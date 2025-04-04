@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/hooks/use-toast";
 import UseUserStore from '@/store/UserStore';
+import LogoMonkey from "@/assets/icons/monkey-icon-b.png";
+import LogoText from "@/assets/icons/BingeWatch Text Black.png";
 
 const Join = () => {
   const [roomId, setRoomId] = useState("");
@@ -60,20 +62,24 @@ const Join = () => {
 
   return (
     <>
+      <div className="logo-container flex cursor-pointer m-2">
+        <img src={LogoMonkey} alt="Logo" width="40" height="40" className="mt-1 ml-2" />
+        <img src={LogoText} width="180" height="34.32" className="mt-2" />
+      </div>
+
       <div className='host-screen w-full h-screen bg-white flex justify-center items-center '>
-        <Card className="w-[480px] ">
+        <Card className="min-w-[300px] max-w-[400px] md:min-w-[400px] md:max-w-[480px] mb-28">
           <CardHeader>
-            <CardTitle className="font-geist-bold text-[20px] ">Join The Party</CardTitle>
-            <CardDescription className="font-geist-semi text-[14px]" >Enter the code shared by your homie!</CardDescription>
-            <CardContent></CardContent>
-            <CardContent className="font-geist-medium text-[18px] w-full ">
+            <CardTitle className="font-geist-bold text-[16px] md:text-[20px] ">Join The Party</CardTitle>
+            <CardDescription className="font-geist-semi text-[12px] md:text-[14px]" >Enter the code shared by your homie!</CardDescription>
+            <CardContent className="font-geist-medium md:text-[18px] w-full pt-3 px-2 flex justify-center items-center ">
               <div className="grid w-full max-w-sm items-center gap-1.5">
-                <Label htmlFor="code">Enter Code </Label>
-                <Input type="text" id="code" placeholder="Enter the code" onChange={(e) => setRoomId(e.target.value)} className="pl-10 placeholder:absolute placeholder:left-4 " />
+                <Label htmlFor="code" className="text-[12px] p-0 m-0">Enter Code </Label>
+                <Input type="text" id="code" placeholder="Enter the code" onChange={(e) => setRoomId(e.target.value)} className="text-[13px] md:text-[15px] placeholder:absolute placeholder:left-4 " />
               </div>
             </CardContent>
             <CardFooter className="flex justify-center">
-              <Button onClick={handleJoinRoom} className="w-[180px]">Enter The Stream</Button>
+              <Button onClick={handleJoinRoom} className="w-[120px] md:w-[180px] font-geist-bold text-[12px]">Enter The Stream</Button>
             </CardFooter>
           </CardHeader>
         </Card>  

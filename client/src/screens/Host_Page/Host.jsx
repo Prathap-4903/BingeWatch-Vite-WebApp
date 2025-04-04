@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import LogoMonkey from "@/assets/icons/monkey-icon-b.png";
 import LogoText from "@/assets/icons/BingeWatch Text Black.png";
 
-const New_Host = () => {
+const Host = () => {
   const { username } = useUserStore();
   const [roomId, setRoomId] = useState('');
   const nav = useNavigate();
@@ -66,4 +66,4 @@ const New_Host = () => {
   )
 }
 
-export default New_Host;
+export default Host;
