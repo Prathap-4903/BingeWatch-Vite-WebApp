@@ -1,17 +1,18 @@
 import "./Stream.css";
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import socket from '@/components/functions/socket';
-import { Camera } from "@phosphor-icons/react";
+import socket from "@/components/functions/socket";
+import { Camera, DotsThreeOutline, Heart } from '@phosphor-icons/react';
 import { Mic, Cast, BarChart2, Upload, UserPlus } from '@geist-ui/icons';
-import Friends_List from '@/components/Stream_Elements/Friends_List';
+import Friends_List from "@/components/Stream_Elements/Friends_List";
 import Request_Alert from "@/components/UI_Elements/Request_Alert";
 import Reaction_Tab from "@/components/Stream_Elements/Reaction_Tab";
 import Chat_Box from "@/components/Stream_Elements/Chat_Box";
-import useUserStore from '@/store/UserStore';
-import useHostStore from '@/store/HostStore';
+import Chat_Box_Mob from "@/components/Stream_Elements/Chat_Box_Mob";
+import useUserStore from "@/store/UserStore";
+import useHostStore from "@/store/HostStore";
 
-const Stream_Interface = () => { 
+const New_Stream_Interface = () => { 
   const [usersInRoom, setUsersInRoom] = useState([]);
   const [joinAlert, setJoinAlert] = useState(false);
   const [joinRequests, setJoinRequests] = useState([]);
@@ -60,9 +61,50 @@ const Stream_Interface = () => {
 
   return (
     <>
-    <div className='stream-screen w-full h-screen bg-[#1a1a1a] flex justify-center items-center gap-[10px] p-[6px] '>
-      <div className='left-part w-[800px] h-[654px] flex flex-col flex-1 justify-center items-center bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] gap-[8px] '>
-        <div className='stream-video w-[870px] h-[480px] m-[7px] bg-[#1a1a1a] border-solid border-[1px] border-[#666] rounded-[34px] '></div>
+    <div className="stream_screen_mob md:hidden w-full h-screen bg-[#1a1a1a] flex flex-col justify-center items-center ">
+      <div className="room_info_mob absolute left-4 top-[12px] p-1 ">
+        <h1 className='text-neutral-400 font-geist-bold text-[12px]  '>👑 {hostname}</h1>
+      </div>
+      <div className="stream_video_mob w-[320px] max-w-[650px] h-[172px] mb-2 bg-[#1a1a1a] border-solid border border-[#666] rounded-[10px]  "></div>
+      <div className="friends_box w-full flex flex-wrap justify-center items-center ">
+        {usersInRoom.map((user, index) => (
+          <Friends_List key={index} Username={user} />
+        ))}
+        <div className='friends_container flex flex-col justify-center items-center w-[70px] h-[75px] my-2 mx-4 lg:my-0 rounded-lg p-1 cursor-pointer'>
+          <div className='w-[40px] h-[40px] flex justify-center items-center text-white bg-[#292929] border border-[#666] rounded-full'>
+            <UserPlus size={16} className="ml-1" />
+          </div>
+          <p className='text-white text-[10px] text-center font-geist-medium mt-1'>Invite</p>
+        </div>
+      </div>
+      
+      <Chat_Box_Mob />
+
+      <div className="controls_container w-full absolute bottom-0 ">
+        <div className="controls_tab w-full h-[72px] bg-neutral-950 flex justify-center items-center gap-5 ">
+          <div className="reactions w-[50px] h-[50px] text-white bg-[#292929] hover:bg-[#1f1f1f] rounded-full border border-solid border-[#666] flex justify-center items-center cursor-pointer ">
+            <Heart size={20} />
+          </div>
+          <div className="camera_btn w-[50px] h-[50px] text-white bg-[#292929] hover:bg-[#1f1f1f] rounded-full border border-solid border-[#666] flex justify-center items-center cursor-pointer ">
+            <Camera size={20} />
+          </div>
+          <div className="mic_btn w-[50px] h-[50px] text-white bg-[#292929] hover:bg-[#1f1f1f] rounded-full border border-solid border-[#666] flex justify-center items-center cursor-pointer ">
+            <Mic size={18} />
+          </div>
+          <div className="cast_btn w-[50px] h-[50px] text-white bg-[#292929] hover:bg-[#1f1f1f] rounded-full border border-solid border-[#666] flex justify-center items-center cursor-pointer ">
+            <Cast size={20} />
+          </div>
+          <div className="features w-[50px] h-[50px] text-white bg-[#292929] hover:bg-[#1f1f1f] rounded-full border border-solid border-[#666] flex justify-center items-center cursor-pointer ">
+            <DotsThreeOutline size={24} />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Laptop Screen */}
+    <div className='stream_screen hidden w-full h-screen bg-[#1a1a1a] lg:flex justify-center items-center gap-[10px] p-[6px] '>
+      <div className='left_part w-[800px] h-[654px] flex flex-col flex-1 justify-center items-center bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] gap-[8px] '>
+        <div className='stream_video w-[870px] h-[480px] m-[7px] bg-[#1a1a1a] border-solid border border-[#666] rounded-[34px] '></div>
         <div className='bottom-part flex w-[870px] h-[204px] gap-[10px] border-solid border-[1px] border-[#666] rounded-[34px] mb-[7.5px] '>
           <div className='bottom-left flex flex-col gap-[15px] w-[652.39px] h-[204px] justify-start items-center pl-[12px]  '>
             <div className='controls flex w-[489.04] h-[80px] mt-[25px] gap-[125.18px] '>
@@ -88,11 +130,11 @@ const Stream_Interface = () => {
           </div>
         </div>
       </div>
-      <div className='right-part w-[438px] h-[654px] flex flex-col items-center gap-[12px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
-        <div className='room-info w-full h-[55px] mt-3 rounded-3xl flex justify-center items-center'>
-          <h1 className='text-neutral-400 '>HOST - {hostname}</h1>
+      <div className='right_part w-[438px] h-[654px] flex flex-col items-center gap-[12px] bg-[#1f1f1f] border-solid border-[1px] border-[#666] rounded-[40px] m-[5px] '>
+        <div className='room_info w-full h-[55px] mt-3 rounded-3xl flex justify-center items-center'>
+          <h1 className='text-neutral-400 '>👑 {hostname}</h1>
         </div>
-        <div className='friends-box flex flex-wrap justify-center items-center w-[403px] h-[580px] gap-4'>
+        <div className='friends_box flex flex-wrap justify-center items-center w-[403px] h-[580px] gap-4'>
           {usersInRoom.map((user, index) => (
             <Friends_List key={index} Username={user} />
           ))}
@@ -113,7 +155,9 @@ const Stream_Interface = () => {
   )
 }
 
-export default Stream_Interface;
+export default New_Stream_Interface;
+
+/* "Prathap_4903", "Parker_116", "Qwen_116", "Luffy_Meat_056", "Sanji_69" */
 
 /*
 <h2 className='text-emerald-500'>HOST OF THE ROOM - {hostInRoom}</h2>
