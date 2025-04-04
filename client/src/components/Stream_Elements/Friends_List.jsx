@@ -25,13 +25,13 @@ const Friends_List = (props) => {
 
   return (
     <>
-      <div className='friends_container flex flex-col justify-center items-center w-[70px] h-[75px] mx-4 rounded-lg p-1'>
+      <div className='friends_container flex flex-col justify-center items-center w-[70px] h-auto lg:h-[75px] my-2 lg:my-0 mx-4 rounded-lg p-1'>
         <img 
           src={picture} 
           alt="Profile-Pic" 
-          className='w-[50px] h-[50px] bg-[#292929] border border-[#666] rounded-full'
+          className='w-[40px] h-[40px] bg-[#292929] border border-[#666] rounded-full'
         />
-        <p className='text-white text-[12px] text-center font-geist-medium mt-1'>{props.Username}</p>
+        <p className='text-white text-[10px] lg:text-[12px] text-center font-geist-medium mt-1'>{props.Username}</p>
       </div>
     </>
   )
