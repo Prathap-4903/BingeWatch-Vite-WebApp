@@ -21,6 +21,7 @@ function App() {
         <Route path="/join" element={<Join />} />
         <Route path="/stream/:roomId" element={<Stream_Interface />} />
         <Route path="/profile/:username" />
+        <Route path="/contact" />
       </Routes>
       <Toaster/>
     </>
