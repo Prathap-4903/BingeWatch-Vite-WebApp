@@ -7,6 +7,8 @@ import Host from './screens/Host_Page/Host';
 import Join from './screens/Join_Page/Join';
 import Stream_Interface from './screens/Stream/Stream_Interface';
 import UserProfile from './screens/Home_Page/User_Profile';
+import Contact_Page from './screens/Home_Page/Contact_Page';
+import AboutUs_Page from './screens/Home_Page/AboutUs_Page';
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
