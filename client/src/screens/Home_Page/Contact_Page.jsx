@@ -16,7 +16,7 @@ const Contact_Page = () => {
         </div>
         <div className='w-full h-screen flex justify-center mt-20'>
           <div className='flex flex-col gap-7'>
-            <h1 className='font-geist-bold text-[32px] text-center '>Get In Touch</h1>
+            <h1 className='font-geist-bold text-[32px] text-center '>Contact Us</h1>
             <p className='font-geist-medium text-[16px] w-[520px] text-center'>Have a brilliant idea for our next feature? Spot a bug during your movie marathon? We're all ears! Use the form below to send us your thoughts and help us make the ultimate watch party experience.</p>
             <div className='flex flex-col border border-solid border-[#c9c9c9] rounded-[10px] p-4 '>
               <form action="" className='flex flex-col gap-4'>
