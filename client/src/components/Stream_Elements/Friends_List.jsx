@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import socket from "@/components/functions/socket";
+import { X } from '@phosphor-icons/react';
+import { toast } from "@/hooks/use-toast";
 
 const Friends_List = (props) => {
+  const [currentUser, setCurrentUser] = useState(props.currentUser);
+  const [userId, setUserId] = useState('');
   const [picture, setPicture] = useState('');
+  const [userClick, setUserClick] = useState(false);
 
   useEffect(() => {
     if (props.Username && props.Username != null) {
@@ -15,7 +21,7 @@ const Friends_List = (props) => {
       const response = await axios.get(`http://localhost:5000/user/username/${props.Username}`, { withCredentials: true });
       if (response.data.status) {
         const userData = response.data.data;
-        console.log(userData);
+        setUserId(userData._id);
         setPicture(userData.picture);
       }
     } catch(err) {
@@ -23,40 +29,45 @@ const Friends_List = (props) => {
     }
   }
 
+  const handleUserClick = () => {
+    setUserClick(!userClick);
+  }
+
+  const handleAddFriend = (senderId, receiverId) => {
+    socket.emit('friend-request', { senderId, receiverId });
+    console.log("Sending friend request:", { senderId: currentUser.id, receiverId: userId });
+    toast({
+      title: "Friend Request Sent!",
+      description: "Wait For Your Friend To Accept It..",
+    });
+  }
+
   return (
     <>
-      <div className='friends_container flex flex-col justify-center items-center w-[70px] h-auto lg:h-[75px] my-2 lg:my-0 mx-4 rounded-lg p-1'>
+      <div onClick={handleUserClick} className='friends_container flex flex-col justify-center items-center w-[70px] h-auto lg:h-[75px] my-2 lg:my-0 mx-4 rounded-lg p-1 cursor-pointer '>
         <img 
           src={picture} 
           alt="Profile-Pic" 
           className='w-[40px] h-[40px] bg-[#292929] border border-[#666] rounded-full'
         />
         <p className='text-white text-[10px] lg:text-[12px] text-center font-geist-medium mt-1'>{props.Username}</p>
+        {userClick && (
+          <div className='absolute w-auto bg-neutral-600 text-neutral-100 px-4 py-2 rounded shadow-lg mt-2'>
+            <div className='flex flex-col gap-2'>
+              <div className='flex justify-between items-center gap-4'>
+                <X size={20} className='absolute text-bold top-2 right-2 cursor-pointer' onClick={handleUserClick} />
+                <p className='text-[14px] font-geist-semi mr-8'>{props.Username}</p>
+              </div>
+              <div className='flex flex-col mt-2 items-start gap-2 text-[14px] font-geist-medium'>
+                <button onClick={() => handleAddFriend(currentUser.id, userId)} className='hover:underline'>Add Friend</button>
+                <button className='hover:underline'>Invite to Group</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   )
 }
 
 export default Friends_List;
-
-/*
-<div className='w-[70px] h-[75px] flex flex-col justify-center items-center font-geist-medium gap-2'>
-  <div className='friends w-[50px] h-[50px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '>
-    <img src={picture} alt="Profile-Pic" className='rounded-full'/>
-  </div>
-  <p className='text-white text-[12px]'>{props.Username}</p>
-</div>
-*/
-
-/*
-v2
-
-<div className='friends_container bg-emerald-300 w-full h-full '>
-  <div className='bg-red-300 w-[70px] h-[75px] grid grid-cols-3 gap-4 font-geist-medium '>
-    <div className='friends w-[50px] h-[50px] bg-[#292929] border-solid border-[1px] border-[#666] rounded-full '>
-      <img src={picture} alt="Profile-Pic" className='rounded-full'/>
-    </div>
-    <p className='text-white text-[12px]'>{props.Username}</p>
-  </div>
-</div>
-*/
