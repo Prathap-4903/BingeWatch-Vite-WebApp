@@ -22,6 +22,7 @@ const Home_Page = () => {
     .then(res => {
       if(res.data.status){
         console.log(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
         console.log("Username - ", res.data.user.username);
         setUsername(res.data.user.username);
         socket.emit('new-user', res.data.user.username);
