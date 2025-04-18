@@ -43,4 +43,25 @@ userApi.get('/username/:username', verifyUser, async (req, res) => {
   }
 });
 
+userApi.get('/friends', verifyUser, async (req, res) => {
+  try {
+    const { username } = req.query;
+
+    if (!username) {
+      return res.status(400).json({ message: "Username is required" });
+    }
+
+    const user = await UserModel.findOne({ username }).populate('friends', 'name username picture');
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ status: true, friends: user.friends });
+  } catch(err) {
+    console.log("Friends Route Error -", err);
+    return res.status(500).json({ status: false, message: "Server Error" });
+  }
+})
+
 export { userApi };
