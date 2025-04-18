@@ -6,7 +6,10 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     confirmPassword: { type: String, required: true },
-    picture: { type: String }
+    picture: { type: String },
+    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'users' }],
+    friendRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'users' }],
+    groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'groups' }]
 })
 UserSchema.set('timestamps', true);
 

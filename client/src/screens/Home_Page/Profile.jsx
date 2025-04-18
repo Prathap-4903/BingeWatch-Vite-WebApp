@@ -57,7 +57,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className='flex items-center justify-center gap-5 '>
+      <div onClick={() => navigate(`/profile/${username}`)} className='flex items-center justify-center gap-5 '>
         <div>
           <button onClick={handleLogout} className='text-[13px] font-geist-bold font-bold px-3 py-[6px] bg-white text-black border-solid border-2 border-r-4 border-b-4 rounded-[8px] border-black hover:bg-black hover:text-white transition-all ease-in-out duration-500 '>LOGOUT</button>
         </div>
